@@ -1,4 +1,4 @@
-package svp.gui.model;
+package svp.data.main;
 
 public enum SubtitleType {
 	SubRip, Audacity;

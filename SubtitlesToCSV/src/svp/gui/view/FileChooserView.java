@@ -18,7 +18,7 @@ import javax.swing.JTextField;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import svp.files.FileChooser;
+import svp.data.files.FileChooser;
 import svp.gui.controller.IConfigurationViewController;
 import svp.gui.controller.IFileChooserViewController;
 

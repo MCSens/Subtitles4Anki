@@ -21,9 +21,9 @@ import javax.swing.JTextField;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import svp.data.main.ConfigurationTable;
+import svp.data.main.SubtitleType;
 import svp.gui.controller.IConfigurationViewController;
-import svp.gui.model.ConfigurationTable;
-import svp.gui.model.SubtitleType;
 
 
 public class ConfigurationView extends AbstractView<IConfigurationViewController> implements IConfigurationView {

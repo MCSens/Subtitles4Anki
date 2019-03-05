@@ -1,4 +1,4 @@
-package svp.gui.model;
+package svp.data.main;
 
 import java.util.ArrayList;
 

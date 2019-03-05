@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import svp.files.FileChooser;
+import svp.data.files.FileChooser;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;

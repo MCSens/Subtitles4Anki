@@ -1,7 +1,7 @@
 package svp.test;
 
-import svp.files.AudacityFileReader;
-import svp.files.SRTFileReader;
+import svp.data.files.AudacityFileReader;
+import svp.data.files.SRTFileReader;
 
 public class AudacityReadSubtitleFileTest {
 

@@ -1,8 +1,8 @@
-package svp.gui.model;
+package svp.data.main;
 
 import java.util.List;
 
-import svp.subtitles.SubtitleContainer;
+import svp.data.subtitles.SubtitleContainer;
 
 public class SubtitleDataholder {
 	protected List<SubtitleContainer> subtitles;

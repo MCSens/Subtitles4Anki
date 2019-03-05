@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-import svp.files.FileChooser;
+import svp.data.files.FileChooser;
 
 class ButtonFrame extends JFrame
 {

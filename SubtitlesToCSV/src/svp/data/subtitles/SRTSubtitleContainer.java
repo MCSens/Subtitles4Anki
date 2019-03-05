@@ -1,4 +1,4 @@
-package svp.subtitles;
+package svp.data.subtitles;
 
 import java.text.Normalizer;
 import java.text.Normalizer.Form;

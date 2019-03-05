@@ -1,4 +1,4 @@
-package svp.subtitles;
+package svp.data.subtitles;
 
 public class SubtitleLiteral {
 	String language;

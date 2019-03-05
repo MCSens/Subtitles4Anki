@@ -19,7 +19,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import svp.gui.model.ConfigurationTable;
+import svp.data.main.ConfigurationTable;
 
 public class TestCardLayout {
 	ConfigurationTable config;

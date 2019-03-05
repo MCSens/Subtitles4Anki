@@ -17,8 +17,9 @@ import javax.swing.JPanel;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import svp.files.FileChooser;
-import svp.gui.model.SubtitleType;
+import svp.data.files.FileChooser;
+import svp.data.main.SubtitleType;
+
 import javax.swing.JTextField;
 
 public class FileChooserViewPanelPlayground extends JPanel {

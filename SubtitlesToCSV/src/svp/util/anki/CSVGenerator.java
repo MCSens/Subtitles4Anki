@@ -1,13 +1,13 @@
-package svp.anki;
+package svp.util.anki;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-import svp.files.FileReader;
-import svp.subtitles.SubtitleContainer;
-import svp.subtitles.SubtitleLiteral;
+import svp.data.files.FileReader;
+import svp.data.subtitles.SubtitleContainer;
+import svp.data.subtitles.SubtitleLiteral;
 
 public class CSVGenerator {
 

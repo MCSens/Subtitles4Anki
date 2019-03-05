@@ -6,24 +6,29 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import svp.files.FileChooser;
+import svp.data.files.FileChooser;
+import svp.data.main.ConfigurationTable;
+import svp.data.main.SubtitleType;
 import svp.gui.controller.IConfigurationViewController;
 import svp.gui.controller.IFileChooserViewController;
-import svp.gui.model.ConfigurationTable;
-import svp.gui.model.SubtitleType;
+import svp.gui.controller.ISubtitleReviewViewController;
 import svp.gui.view.ConfigurationView;
 import svp.gui.view.FileChooserView;
 import svp.gui.view.IConfigurationView;
 import svp.gui.view.IFileChooserView;
+import svp.gui.view.ISubtitleReviewView;
+import svp.gui.view.SubtitleReviewView;
 
 public class MainPane extends JPanel {
     protected static final String CONFIGURATION_VIEW = "View.configuration";
     protected static final String FILE_CHOOSER_VIEW = "View.file";
+    protected static final String SUBTITLE_REVIEW_VIEW = "View.review";
 
     private CardLayout cardLayout;
 
     private IConfigurationView configurationView;
     private IFileChooserView fileChooserView;
+    private ISubtitleReviewView subtitleReviewView;
 
     public MainPane() {
         cardLayout = new CardLayout();
@@ -32,10 +37,12 @@ public class MainPane extends JPanel {
         // This could be established via a factory or builder pattern
         configurationView = new ConfigurationView(new ConfigurationViewController());
         fileChooserView = new FileChooserView(new FileChooserViewController());
+        subtitleReviewView = new SubtitleReviewView(new SubtitleReviewViewController());
 
         add(configurationView.getView(), CONFIGURATION_VIEW);
         add(fileChooserView.getView(), FILE_CHOOSER_VIEW);
-
+        add(subtitleReviewView.getView(), SUBTITLE_REVIEW_VIEW);
+        
         cardLayout.show(this, CONFIGURATION_VIEW);
     }
 
@@ -44,7 +51,6 @@ public class MainPane extends JPanel {
 
         @Override
         public void nextHasBeenClicked() {
-        	//fileChooserView.getViewController().setCredentials(name);
 			boolean isMergeCommasEnabled = ((ConfigurationView)configurationView).getIsMergeCommasEnabledCheckbox().isSelected();
 			config.setMergeCommasEnabled(isMergeCommasEnabled);
 			
@@ -76,7 +82,8 @@ public class MainPane extends JPanel {
 		@Override
 		public void nextHasBeenClicked() {
 			// TODO Auto-generated method stub
-			
+			cardLayout.show(MainPane.this, SUBTITLE_REVIEW_VIEW);
+			System.out.println("Boy?");
 		}
 
 		@Override
@@ -127,5 +134,27 @@ public class MainPane extends JPanel {
             	((FileChooserView)fileChooserView).setOutputFolderSet(false); 
             }
 		}
+    }
+    
+    protected class SubtitleReviewViewController implements ISubtitleReviewViewController {
+    	ConfigurationTable config = ConfigurationTable.getConfigurationTable();
+
+		@Override
+		public void nextHasBeenClicked() {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void backHasBeenClicked() {
+			cardLayout.show(MainPane.this, FILE_CHOOSER_VIEW);
+		}
+		
+		@Override
+		public void cancelHasBeenClicked() {
+			// TODO Auto-generated method stub
+			
+		}
+    	
     }
 }

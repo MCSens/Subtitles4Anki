@@ -1,4 +1,4 @@
-package svp.files;
+package svp.data.files;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import svp.gui.model.ConfigurationTable;
-import svp.subtitles.AudacitySubtitleContainer;
-import svp.subtitles.SRTSubtitleContainer;
-import svp.subtitles.SubtitleContainer;
+import svp.data.main.ConfigurationTable;
+import svp.data.subtitles.AudacitySubtitleContainer;
+import svp.data.subtitles.SRTSubtitleContainer;
+import svp.data.subtitles.SubtitleContainer;
 
 public class AudacityFileReader extends FileReader{
 

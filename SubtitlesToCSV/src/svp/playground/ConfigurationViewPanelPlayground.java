@@ -17,7 +17,7 @@ import javax.swing.BoxLayout;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import net.miginfocom.swing.MigLayout;
-import svp.gui.model.SubtitleType;
+import svp.data.main.SubtitleType;
 
 import javax.swing.JSpinner;
 import javax.swing.JTextArea;

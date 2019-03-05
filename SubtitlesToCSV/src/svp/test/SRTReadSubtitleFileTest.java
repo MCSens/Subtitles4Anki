@@ -1,6 +1,6 @@
 package svp.test;
 
-import svp.files.SRTFileReader;
+import svp.data.files.SRTFileReader;
 
 public class SRTReadSubtitleFileTest {
 

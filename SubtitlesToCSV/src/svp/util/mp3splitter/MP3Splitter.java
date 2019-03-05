@@ -1,11 +1,11 @@
-package svp.mp3splitter;
+package svp.util.mp3splitter;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import svp.files.FileReader;
-import svp.subtitles.SubtitleContainer;
+import svp.data.files.FileReader;
+import svp.data.subtitles.SubtitleContainer;
 
 public class MP3Splitter {
 

@@ -1,12 +1,12 @@
-package svp.files;
+package svp.data.files;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import svp.gui.model.ConfigurationTable;
-import svp.gui.model.SubtitleDataholder;
-import svp.subtitles.SRTSubtitleContainer;
-import svp.subtitles.SubtitleContainer;
+import svp.data.main.ConfigurationTable;
+import svp.data.main.SubtitleDataholder;
+import svp.data.subtitles.SRTSubtitleContainer;
+import svp.data.subtitles.SubtitleContainer;
 
 public abstract class FileReader {
 	protected ConfigurationTable configurationTable;
