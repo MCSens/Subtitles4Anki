@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import svp.gui.model.ConfigurationTable;
+import svp.gui.model.SubtitleDataholder;
 import svp.subtitles.SRTSubtitleContainer;
 import svp.subtitles.SubtitleContainer;
 
 public abstract class FileReader {
 	protected ConfigurationTable configurationTable;
+	protected SubtitleDataholder subtitleDataholder;
 	protected List<SubtitleContainer> subtitles;
 	protected String[] languages;
 	protected String pathToSubtitleFile;
