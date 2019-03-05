@@ -2,7 +2,7 @@ package svp.test;
 
 import svp.data.files.AudacityFileReader;
 import svp.data.files.SRTFileReader;
-import svp.util.mp3splitter.MP3Splitter;
+import svp.util.MP3Splitter;
 
 public class AudacityGenerateSplitTimestampsTest {
 

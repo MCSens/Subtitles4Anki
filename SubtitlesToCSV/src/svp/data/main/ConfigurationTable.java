@@ -12,21 +12,26 @@ public class ConfigurationTable {
 	private String pathToAudioFile;
 	private String pathToOutputFolder;
 	
+	
+	private ConfigurationTable() {
+		//Do nothing, enforce usages of getInstance Method
+	}
+	
+	public static ConfigurationTable getConfigurationTable() {
+		return instance;
+	}
+	
 	public String getPathToOutputFolder() {
 		return pathToOutputFolder;
 	}
-
-
+	
+	
 	public void setPathToOutputFolder(String pathToOutputFolder) {
 		System.out.println("TRACE Output Path has been set to "+pathToOutputFolder);
 		this.pathToOutputFolder = pathToOutputFolder;
 	}
-
-	private ArrayList<String> listOfRemovableCharacters;
 	
-	private ConfigurationTable() {
-		
-	}
+	private ArrayList<String> listOfRemovableCharacters;
 	
 
 	public SubtitleType getSubtitleFormat() {
@@ -91,7 +96,4 @@ public class ConfigurationTable {
 		this.pathToAudioFile = pathToAudioFile;
 	}
 	
-	public static ConfigurationTable getConfigurationTable() {
-		return instance;
-	}
 }

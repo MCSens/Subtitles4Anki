@@ -40,7 +40,7 @@ public class AudacitySubtitleContainer extends SubtitleContainer{
 					System.out.println("TRACE - Language: "+language +" Translation: "+translation);
 					SubtitleLiteral sl = new SubtitleLiteral(language, translation);
 					subtitles.add(sl);
-					System.out.println("Added "+sl);
+					System.out.println("TRACE Added "+sl);
 				}
 			}
 			this.translations = subtitles;
@@ -72,7 +72,7 @@ public class AudacitySubtitleContainer extends SubtitleContainer{
 	}
 
 	public String convertStartTimestamp(String timestamp) {
-		System.out.println("Got Timestamp: "+timestamp);
+		System.out.println("TRACE Got Timestamp: "+timestamp);
 		timestamp = timestamp.replaceAll("\\s+","");
 		String[] tempTsp = timestamp.split("\\.");
 		String result="";
@@ -90,12 +90,12 @@ public class AudacitySubtitleContainer extends SubtitleContainer{
 				result = "00."+(second);		
 			}
 		}
-		System.out.println("Result Timestamp: "+result);
+		System.out.println("TRACE Result Timestamp: "+result);
 		return result;
 	}
 	
 	public String convertEndTimestamp(String timestamp) {
-		System.out.println("Got Timestamp: "+timestamp);
+		System.out.println("TRACE Got Timestamp: "+timestamp);
 		timestamp = timestamp.replaceAll("\\s+","");
 		String[] tempTsp = timestamp.split("\\.");
 		String result="";
@@ -121,7 +121,7 @@ public class AudacitySubtitleContainer extends SubtitleContainer{
 				result = "00."+(second+1);		
 			}
 		}
-		System.out.println("Result Timestamp: "+result);
+		System.out.println("TRACE Result Timestamp: "+result);
 		return result;
 	}
 }

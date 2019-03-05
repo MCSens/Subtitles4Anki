@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import svp.data.main.ConfigurationTable;
+import svp.data.main.SubtitleDataholder;
 import svp.data.subtitles.AudacitySubtitleContainer;
 import svp.data.subtitles.SRTSubtitleContainer;
 import svp.data.subtitles.SubtitleContainer;
@@ -16,6 +17,7 @@ public class AudacityFileReader extends FileReader{
 	public AudacityFileReader(String movieName, String pathToSubtitleFile, String pathToAudioFile){	
 		// TODO Auto-generated method stub
 		this.configurationTable = ConfigurationTable.getConfigurationTable();
+		this.subtitleDataholder = SubtitleDataholder.getSubtitleDataholder();
 		this.movieName = movieName;   //Alles in der Config Table, nicht mehr lokal hier drin!
 		this.subtitles = new ArrayList();
 		this.pathToSubtitleFile = pathToSubtitleFile;
@@ -25,6 +27,7 @@ public class AudacityFileReader extends FileReader{
 	public AudacityFileReader(String movieName, String pathToSubtitleFile, String pathToAudioFile, String[] languages){	
 		// TODO Auto-generated method stub
 		this.configurationTable = ConfigurationTable.getConfigurationTable();
+		this.subtitleDataholder = SubtitleDataholder.getSubtitleDataholder();
 		this.movieName = movieName;
 		this.subtitles = new ArrayList();
 		this.pathToSubtitleFile = pathToSubtitleFile;
@@ -34,6 +37,7 @@ public class AudacityFileReader extends FileReader{
 	
 	public AudacityFileReader(String[] languages) {
 		this.configurationTable = ConfigurationTable.getConfigurationTable();
+		this.subtitleDataholder = SubtitleDataholder.getSubtitleDataholder();
 		this.movieName = configurationTable.getMovieName();
 		this.pathToSubtitleFile = configurationTable.getPathToSubtitleFile();
 		this.pathToAudioFile = configurationTable.getPathToAudioFile();
@@ -61,6 +65,7 @@ public class AudacityFileReader extends FileReader{
  				AudacitySubtitleContainer asc = new AudacitySubtitleContainer(this.movieName, splitted, this.languages);
  				if(asc.getValid()) {
  					subtitles.add(asc);
+ 					this.subtitleDataholder.addSubtitleContainer(asc);
  				}
  				else {
  					System.out.println("WARN - Issue found with "+asc+" and thus is being skipped");

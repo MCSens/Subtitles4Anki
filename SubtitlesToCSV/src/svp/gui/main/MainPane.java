@@ -6,7 +6,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import svp.data.files.FileChooser;
 import svp.data.main.ConfigurationTable;
 import svp.data.main.SubtitleType;
 import svp.gui.controller.IConfigurationViewController;
@@ -18,6 +17,7 @@ import svp.gui.view.IConfigurationView;
 import svp.gui.view.IFileChooserView;
 import svp.gui.view.ISubtitleReviewView;
 import svp.gui.view.SubtitleReviewView;
+import svp.util.FileChooser;
 
 public class MainPane extends JPanel {
     protected static final String CONFIGURATION_VIEW = "View.configuration";
@@ -81,9 +81,8 @@ public class MainPane extends JPanel {
 
 		@Override
 		public void nextHasBeenClicked() {
-			// TODO Auto-generated method stub
+			//Start Processing of data and after that open SUBTITLE View to display the result
 			cardLayout.show(MainPane.this, SUBTITLE_REVIEW_VIEW);
-			System.out.println("Boy?");
 		}
 
 		@Override

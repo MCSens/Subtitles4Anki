@@ -17,8 +17,8 @@ import javax.swing.JPanel;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import svp.data.files.FileChooser;
 import svp.data.main.SubtitleType;
+import svp.util.FileChooser;
 
 import javax.swing.JTextField;
 

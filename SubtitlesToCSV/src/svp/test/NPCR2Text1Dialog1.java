@@ -2,8 +2,8 @@ package svp.test;
 
 import svp.data.files.AudacityFileReader;
 import svp.data.files.SRTFileReader;
-import svp.util.anki.CSVGenerator;
-import svp.util.mp3splitter.MP3Splitter;
+import svp.util.CSVGenerator;
+import svp.util.MP3Splitter;
 
 public class NPCR2Text1Dialog1 {
 

@@ -1,4 +1,4 @@
-package svp.util.anki;
+package svp.util;
 
 import java.io.File;
 import java.io.IOException;

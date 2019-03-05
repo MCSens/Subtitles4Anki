@@ -1,13 +1,23 @@
 package svp.data.main;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import svp.data.subtitles.SubtitleContainer;
 
 public class SubtitleDataholder {
-	protected List<SubtitleContainer> subtitles;
-	protected String[] languages;
-	protected String movieName;
+	private static SubtitleDataholder instance = new SubtitleDataholder();
+	private List<SubtitleContainer> subtitles = new ArrayList<SubtitleContainer>();
+	private String[] languages;
+	private String movieName;
+	
+	private SubtitleDataholder() {
+		//Do nothing, enforce usages of getInstance Method
+	}
+	
+	public static SubtitleDataholder getSubtitleDataholder() {
+		return instance;
+	}
 	
 	public List<SubtitleContainer> getSubtitles() {
 		return subtitles;
@@ -34,6 +44,7 @@ public class SubtitleDataholder {
 	}
 	
 	public void addSubtitleContainer(SubtitleContainer sc) {
+		System.out.println("INFO added SubtitleContainer "+sc+" to SubtitleDataholder");
 		this.subtitles.add(sc);
 	}
 }

@@ -1,4 +1,4 @@
-package svp.util.mp3splitter;
+package svp.util;
 
 import java.io.File;
 import java.io.IOException;
