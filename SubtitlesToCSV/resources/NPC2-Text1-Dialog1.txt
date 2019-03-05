@@ -1,0 +1,28 @@
+170.444688	171.660192	得	děi	to need, to must, to have to
+172.217678	173.798747	早	zǎo	early
+174.337955	176.476511	银行	yín háng	bank
+177.280754	178.934936	少	shǎo	few, little
+179.894544	181.694951	排队	pái duì	to form a line, to queue up
+183.020125	184.793115	排	pái	to arrange, to put in order
+185.451132	187.361209	队	duì	a row of people, line
+188.265983	190.258312	换	huàn	to exchange, to change
+191.336729	193.356475	英镑	yīng bàng	pound sterling
+194.096744	196.317552	人民币	rén mín bì	Renminbi (RMB)
+198.081403	200.320489	人民	rén mín	people
+204.716408	206.699598	用	yòng	to use
+207.878546	209.587562	刚	gāng	just, only a short while ago
+210.501475	212.548639	从	cóng	from
+213.270630	215.180707	非常	fēi cháng	very, extremely, highly
+215.957532	218.333705	次	cì	(measure word for actions)
+218.553044	220.499678	参观	cān guān	to visit (a place)
+221.504981	223.990824	兵马俑	bīng mǎ yǒng	(ceremonial clay statues of warriors and horses, which are buried with the dead)
+224.795067	226.778257	兵	bīng	soldier, fighter
+227.399717	229.556551	明信片	míng xìn piàn	postcard
+230.790333	232.508488	信	xìn	letter
+233.193923	234.838965	该	gāi	to be somebody's turn to do something
+236.054469	238.695676	工作人员	gōng zuò rén yuán	working personnel, staff member
+239.838067	242.314770	人员	rén yuán	personnel, staff
+242.991065	244.901142	千	qiān	thousand
+245.760220	247.715993	数	shǔ	to count
+248.757853	251.225417	王府井	Wáng fǔ jǐng	Wangfujing (name of a famous commercial district in Beijing)
+252.916155	254.789676	西安	Xī ān	Xian (name of the capital of Shaanxi Province)

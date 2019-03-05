@@ -1,0 +1,3 @@
+1.306187	5.358033	老师你好	Laoshi Nihao	Teacher, Hello!	Lehrer, Hallo!
+5.384689	7.597210	你好老师	Nihao Laoshi	Hello Teacher	Hallo Lehrer!
+7.623867	10.556124	请问，这是什么	Qingwen, Zhe shi shenme	Excuse me, what is this?	Entschuldigung, was ist das?
