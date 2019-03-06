@@ -1,7 +1,7 @@
 package svp.test;
 
-import svp.data.files.AudacityFileReader;
-import svp.data.files.SRTFileReader;
+import svp.data.filereader.AudacityFileReader;
+import svp.data.filereader.SRTFileReader;
 import svp.util.CSVGenerator;
 import svp.util.MP3Splitter;
 

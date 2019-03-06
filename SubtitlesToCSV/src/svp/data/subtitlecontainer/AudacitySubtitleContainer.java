@@ -1,4 +1,4 @@
-package svp.data.subtitles;
+package svp.data.subtitlecontainer;
 
 import java.text.Normalizer;
 import java.text.Normalizer.Form;
@@ -80,8 +80,8 @@ public class AudacitySubtitleContainer extends SubtitleContainer{
 			int minutes = 0;
 			int second = Integer.valueOf(tempTsp[0]); //always two digit, get rid of milli seconds
 			int millisecond = Integer.valueOf(tempTsp[1]);
-			
-			if((second/60) > 1) {
+			//double value = second/60;
+			if(((double)second/(double)60) > 1) {
 				minutes = Integer.valueOf((second/60));
 				int seconds = second - minutes*60;
 				result = minutes+"."+seconds;				
@@ -104,7 +104,7 @@ public class AudacitySubtitleContainer extends SubtitleContainer{
 			int second = Integer.valueOf(tempTsp[0]); //always two digit, get rid of milli seconds
 			int millisecond = Integer.valueOf(tempTsp[1]);
 
-			if((second/60) > 1) {
+			if(((double)second/(double)60) > 1) {
 				minutes = Integer.valueOf((second/60));
 				int seconds = second - minutes*60;
 				if(seconds==59) {

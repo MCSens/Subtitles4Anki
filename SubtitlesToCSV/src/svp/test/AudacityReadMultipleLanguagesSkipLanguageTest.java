@@ -1,6 +1,6 @@
 package svp.test;
 
-import svp.data.files.AudacityFileReader;
+import svp.data.filereader.AudacityFileReader;
 
 public class AudacityReadMultipleLanguagesSkipLanguageTest {
 

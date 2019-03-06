@@ -1,4 +1,4 @@
-package svp.data.files;
+package svp.data.filereader;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Scanner;
 
 import svp.data.main.ConfigurationTable;
-import svp.data.subtitles.SRTSubtitleContainer;
-import svp.data.subtitles.SubtitleContainer;
+import svp.data.subtitlecontainer.SRTSubtitleContainer;
+import svp.data.subtitlecontainer.SubtitleContainer;
 
 public class SRTFileReader extends FileReader{
 

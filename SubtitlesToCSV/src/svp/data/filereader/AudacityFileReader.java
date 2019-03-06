@@ -1,4 +1,4 @@
-package svp.data.files;
+package svp.data.filereader;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -8,9 +8,9 @@ import java.util.Scanner;
 
 import svp.data.main.ConfigurationTable;
 import svp.data.main.SubtitleDataholder;
-import svp.data.subtitles.AudacitySubtitleContainer;
-import svp.data.subtitles.SRTSubtitleContainer;
-import svp.data.subtitles.SubtitleContainer;
+import svp.data.subtitlecontainer.AudacitySubtitleContainer;
+import svp.data.subtitlecontainer.SRTSubtitleContainer;
+import svp.data.subtitlecontainer.SubtitleContainer;
 
 public class AudacityFileReader extends FileReader{
 
@@ -29,10 +29,16 @@ public class AudacityFileReader extends FileReader{
 		this.configurationTable = ConfigurationTable.getConfigurationTable();
 		this.subtitleDataholder = SubtitleDataholder.getSubtitleDataholder();
 		this.movieName = movieName;
-		this.subtitles = new ArrayList();
+		configurationTable.setMovieName(movieName);
+		
 		this.pathToSubtitleFile = pathToSubtitleFile;
+		configurationTable.setPathToSubtitleFile(pathToSubtitleFile);
+		
 		this.pathToAudioFile = pathToAudioFile;
+		configurationTable.setPathToAudioFile(pathToAudioFile);
+		
 		this.languages = languages;
+		this.subtitles = new ArrayList();
 	}
 	
 	public AudacityFileReader(String[] languages) {
@@ -71,7 +77,7 @@ public class AudacityFileReader extends FileReader{
  					System.out.println("WARN - Issue found with "+asc+" and thus is being skipped");
  				}
 			}
-		} catch (FileNotFoundException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			// TODO Auto-generated catch block
 		} finally {

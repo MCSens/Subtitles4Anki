@@ -5,15 +5,19 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-import svp.data.files.FileReader;
-import svp.data.subtitles.SubtitleContainer;
-import svp.data.subtitles.SubtitleLiteral;
+import svp.data.filereader.FileReader;
+import svp.data.main.ConfigurationTable;
+import svp.data.main.SubtitleDataholder;
+import svp.data.subtitlecontainer.SubtitleContainer;
+import svp.data.subtitlecontainer.SubtitleLiteral;
 
 public class CSVGenerator {
 
 	public static void createCSV(FileReader fr, String outputPath) {
 	    try {
-			String pathToAudioFile = fr.getPathToAudioFile();
+	    	ConfigurationTable configurationTable = ConfigurationTable.getConfigurationTable();
+	    	SubtitleDataholder subtitleDataholder = SubtitleDataholder.getSubtitleDataholder();
+			String pathToAudioFile = configurationTable.getPathToAudioFile();
 			ArrayList<String[]> splitTimestamps = fr.getSplitTimestamps();
 			ArrayList<SubtitleContainer> subtitles = (ArrayList<SubtitleContainer>) fr.getSubtitles();
 			String[] languages = fr.getLanguages();
