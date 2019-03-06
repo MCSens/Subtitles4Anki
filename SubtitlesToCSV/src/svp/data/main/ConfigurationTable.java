@@ -15,6 +15,7 @@ public class ConfigurationTable {
 	
 	private ConfigurationTable() {
 		//Do nothing, enforce usages of getInstance Method
+		//Testcommit Nr XYZ
 	}
 	
 	public static ConfigurationTable getConfigurationTable() {
