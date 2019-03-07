@@ -13,7 +13,7 @@ import svp.data.subtitlecontainer.SubtitleLiteral;
 
 public class CSVGenerator {
 
-	public static void createCSV(String outputPath) {
+	public static void createCSV() {
 	    try {
 	    	ConfigurationTable configurationTable = ConfigurationTable.getConfigurationTable();
 	    	SubtitleDataholder subtitleDataholder = SubtitleDataholder.getSubtitleDataholder();
@@ -22,8 +22,9 @@ public class CSVGenerator {
 			ArrayList<SubtitleContainer> subtitles = (ArrayList<SubtitleContainer>) subtitleDataholder.getSubtitles();
 			String[] languages = subtitleDataholder.getLanguages();
 			//String outputPath = configurationTable.getPathToOutputFolder();
-			String movieName = configurationTable.getMovieName();
+			String movieName = configurationTable.getMovieTitle();
 			
+			String outputPath = configurationTable.getPathToOutputFolder();
 			//Open Writer to write into File
 			String csvFileName = outputPath+"\\"+movieName+".csv";
 			System.out.println("TRACE createCSV Full CSV Name: "+csvFileName);

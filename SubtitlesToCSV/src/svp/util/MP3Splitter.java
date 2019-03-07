@@ -30,13 +30,12 @@ public class MP3Splitter {
 			f.mkdir();
 			*/
 			System.out.println("TRACE Mp3Splitter - Test path to Audio File: - "+pathToAudioFile);
-			String movieName = configurationTable.getMovieName();
+			String movieTitle = configurationTable.getMovieTitle();
 			for(SubtitleContainer sc: subtitles) {
 				String start = sc.getStartTimestamp();
 				String end = sc.getEndTimestamp();
 				String outputFileName = sc.getOutputFileName();
-				Process pr = rt.exec("mp3splt "+pathToAudioFile+" "+start+" "+end+" -o S2C_"+movieName+"\\"+outputFileName);
-				int test=1;
+				Process pr = rt.exec("mp3splt "+pathToAudioFile+" "+start+" "+end+" -o S2C_"+movieTitle+"\\"+outputFileName);
 			}
 			//pr = rt.exec("mp3splt \"C:\\Users\\MCSens\\Audio\\to_split_ep2.mp3\" 10.00 10.05");
 		} catch (IOException e) {

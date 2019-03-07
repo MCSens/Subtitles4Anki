@@ -7,7 +7,7 @@ public class ConfigurationTable {
 	private SubtitleType subtitleFormat;
 	private boolean isAudioEnabled;
 	private boolean isMergeCommasEnabled;
-	private String movieName;
+	private String movieTitle;
 	private String pathToSubtitleFile;
 	private String pathToAudioFile;
 	private String pathToOutputFolder;
@@ -69,13 +69,13 @@ public class ConfigurationTable {
 		this.listOfRemovableCharacters = listOfRemovableCharacters;
 	}
 	
-	public String getMovieName() {
-		return movieName;
+	public String getMovieTitle() {
+		return movieTitle;
 	}
 	
-	public void setMovieName(String movieName) {
-		System.out.println("TRACE Movie Name has been set to "+movieName);
-		this.movieName = movieName;
+	public void setMovieTitle(String movieTitle) {
+		System.out.println("TRACE Movie Title has been set to "+movieTitle);
+		this.movieTitle = movieTitle;
 	}
 	
 	public String getPathToSubtitleFile() {

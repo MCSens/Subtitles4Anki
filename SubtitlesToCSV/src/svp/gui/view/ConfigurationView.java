@@ -31,6 +31,8 @@ public class ConfigurationView extends AbstractView<IConfigurationViewController
     private JComboBox subtitleFileFormatCombobox;
     private JCheckBox isAudioEnabledCheckbox;
     private JCheckBox isMergeCommasEnabledCheckbox;
+    private JTextField txtMovieTitle;
+    private JTextArea txtSubtitleLanguages;
     
     public JComboBox getSubtitleFileFormatCombobox() {
 		return subtitleFileFormatCombobox;
@@ -54,6 +56,22 @@ public class ConfigurationView extends AbstractView<IConfigurationViewController
 
 	public void setIsMergeCommasEnabledCheckbox(JCheckBox isMergeCommasEnabledCheckbox) {
 		this.isMergeCommasEnabledCheckbox = isMergeCommasEnabledCheckbox;
+	}
+
+	public JTextField getTxtMovieTitle() {
+		return txtMovieTitle;
+	}
+
+	public void setTxtMovieTitle(JTextField txtMovieTitle) {
+		this.txtMovieTitle = txtMovieTitle;
+	}
+
+	public JTextArea getTxtSubtitleLanguages() {
+		return txtSubtitleLanguages;
+	}
+
+	public void setTxtSubtitleLanguages(JTextArea txtSubtitleLanguages) {
+		this.txtSubtitleLanguages = txtSubtitleLanguages;
 	}
 
 	public ConfigurationView(IConfigurationViewController controller) {
@@ -98,37 +116,29 @@ public class ConfigurationView extends AbstractView<IConfigurationViewController
 		JLabel lblLanguages = new JLabel("Languages of Subtitles.");
 		lblLanguages.setForeground(new Color(255, 250, 205));
 		
-		JTextArea txtSubtitleLanguages = new JTextArea();
+		txtSubtitleLanguages = new JTextArea();
 		txtSubtitleLanguages.setFont(new Font("Monospaced", Font.PLAIN, 11));
 		txtSubtitleLanguages.setText("Seprate Language with ;\r\ne.g.: Hanzi; English;\r\n");
 		txtSubtitleLanguages.setColumns(10);
+		
+		JLabel lblMovieTitle = new JLabel("Movie Title");
+		lblMovieTitle.setForeground(new Color(255, 250, 205));
+		
+		txtMovieTitle = new JTextField();
+		txtMovieTitle.setColumns(10);
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(btnNext, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(buttonCancel, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
 							.addContainerGap())
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(10)
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(lblMergeCommasEnabled, GroupLayout.PREFERRED_SIZE, 198, GroupLayout.PREFERRED_SIZE)
-										.addComponent(lblLanguages, GroupLayout.PREFERRED_SIZE, 173, GroupLayout.PREFERRED_SIZE))
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addGroup(groupLayout.createSequentialGroup()
-											.addGap(7)
-											.addComponent(txtSubtitleLanguages, GroupLayout.PREFERRED_SIZE, 270, GroupLayout.PREFERRED_SIZE))
-										.addGroup(groupLayout.createSequentialGroup()
-											.addGap(131)
-											.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-												.addComponent(isAudioEnabledCheckbox)
-												.addComponent(isMergeCommasEnabledCheckbox, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)))))
 								.addComponent(lblCleanup, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
 								.addComponent(lblGeneral)
 								.addGroup(groupLayout.createSequentialGroup()
@@ -138,8 +148,25 @@ public class ConfigurationView extends AbstractView<IConfigurationViewController
 											.addComponent(lblSelectSubtitleFile, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE)
 											.addGap(96)
 											.addComponent(subtitleFileFormatCombobox, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE))
-										.addComponent(lblUseAudio, GroupLayout.PREFERRED_SIZE, 164, GroupLayout.PREFERRED_SIZE))))
-							.addContainerGap(105, Short.MAX_VALUE))))
+										.addComponent(lblUseAudio, GroupLayout.PREFERRED_SIZE, 164, GroupLayout.PREFERRED_SIZE)))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGap(10)
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addGroup(groupLayout.createSequentialGroup()
+											.addComponent(lblMergeCommasEnabled, GroupLayout.PREFERRED_SIZE, 198, GroupLayout.PREFERRED_SIZE)
+											.addGap(131)
+											.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+												.addComponent(isAudioEnabledCheckbox)
+												.addComponent(isMergeCommasEnabledCheckbox, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)))
+										.addGroup(groupLayout.createSequentialGroup()
+											.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+												.addComponent(lblLanguages, GroupLayout.PREFERRED_SIZE, 173, GroupLayout.PREFERRED_SIZE)
+												.addComponent(lblMovieTitle, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE))
+											.addGap(33)
+											.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+												.addComponent(txtMovieTitle)
+												.addComponent(txtSubtitleLanguages, GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE))))))
+							.addContainerGap(56, Short.MAX_VALUE))))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -161,11 +188,15 @@ public class ConfigurationView extends AbstractView<IConfigurationViewController
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblMergeCommasEnabled, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
 						.addComponent(isMergeCommasEnabledCheckbox, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE))
-					.addGap(5)
+					.addPreferredGap(ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblMovieTitle, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
+						.addComponent(txtMovieTitle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblLanguages, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
 						.addComponent(txtSubtitleLanguages, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+					.addGap(47)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(buttonCancel)
 						.addComponent(btnNext))

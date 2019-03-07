@@ -2,6 +2,7 @@ package svp.test;
 
 import svp.data.filereader.AudacityFileReader;
 import svp.data.filereader.SRTFileReader;
+import svp.data.main.ConfigurationTable;
 import svp.util.CSVGenerator;
 import svp.util.MP3Splitter;
 
@@ -21,7 +22,9 @@ public class NPCR2Text1Dialog1 {
 		//afr.mergeCommas();
 		MP3Splitter.splitMP3File();
 		String outputPath = "C:\\Users\\MCSens\\Subtitles\\SubtitleFiles\\";
-		CSVGenerator.createCSV(outputPath);
+		ConfigurationTable config = ConfigurationTable.getConfigurationTable();
+		config.setPathToOutputFolder(outputPath);
+		CSVGenerator.createCSV();
 		//Version without Subtitle Dataholder
 		//CSVGenerator.createCSV(afr, "C:\\Users\\MCSens\\Subtitles\\SubtitleFiles\\");
 		//System.out.println(afr);

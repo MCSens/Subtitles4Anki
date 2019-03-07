@@ -61,6 +61,7 @@ public abstract class FileReader {
 	
 	public abstract void readFile();
 	
+	
 	public void mergeCommas() {
 		List<SubtitleContainer> tempSubtitles = this.subtitles;
 		for(int i = 0; i < subtitles.size()-1; i++) {

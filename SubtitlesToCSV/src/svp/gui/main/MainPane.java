@@ -6,7 +6,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+import svp.data.filereader.AudacityFileReader;
 import svp.data.main.ConfigurationTable;
+import svp.data.main.SubtitleDataholder;
 import svp.data.main.SubtitleType;
 import svp.gui.controller.IConfigurationViewController;
 import svp.gui.controller.IFileChooserViewController;
@@ -17,7 +19,9 @@ import svp.gui.view.IConfigurationView;
 import svp.gui.view.IFileChooserView;
 import svp.gui.view.ISubtitleReviewView;
 import svp.gui.view.SubtitleReviewView;
+import svp.util.CSVGenerator;
 import svp.util.FileChooser;
+import svp.util.MP3Splitter;
 
 public class MainPane extends JPanel {
     protected static final String CONFIGURATION_VIEW = "View.configuration";
@@ -48,6 +52,7 @@ public class MainPane extends JPanel {
 
     protected class ConfigurationViewController implements IConfigurationViewController {
     	ConfigurationTable config = ConfigurationTable.getConfigurationTable();
+    	SubtitleDataholder subtitleDataholder = SubtitleDataholder.getSubtitleDataholder();
 
         @Override
         public void nextHasBeenClicked() {
@@ -60,7 +65,18 @@ public class MainPane extends JPanel {
 			SubtitleType subtitleFileFormat = (SubtitleType) ((ConfigurationView)configurationView).getSubtitleFileFormatCombobox().getSelectedItem(); 
 			config.setSubtitleFormat(subtitleFileFormat);
 			
-			System.out.println("Commas: "+isMergeCommasEnabled+", Audio: "+isAudioEnabled+ ", Type: "+subtitleFileFormat);
+			String movieTitle = ((ConfigurationView)configurationView).getTxtMovieTitle().getText();
+			config.setMovieTitle(movieTitle);
+			
+			String languagesString = ((ConfigurationView)configurationView).getTxtSubtitleLanguages().getText();
+			String[] languages = {"English"}; //Default language
+			try {
+				languages = languagesString.split(";");
+			}catch(Exception e) {
+				System.out.println(e.getStackTrace());
+			}
+			subtitleDataholder.setLanguages(languages);
+			System.out.println("TRACE Commas: "+isMergeCommasEnabled+", Audio: "+isAudioEnabled+ ", Type: "+subtitleFileFormat);
             cardLayout.show(MainPane.this, FILE_CHOOSER_VIEW);
         }
 
@@ -82,6 +98,25 @@ public class MainPane extends JPanel {
 		@Override
 		public void nextHasBeenClicked() {
 			//Start Processing of data and after that open SUBTITLE View to display the result
+			String pathToSubtitleFile = ((FileChooserView)fileChooserView).getTxtSubtitleFile().getText();
+			String pathToAudioFile = ((FileChooserView)fileChooserView).getTxtAudioFile().getText();
+			String pathToOutputFolder = ((FileChooserView)fileChooserView).getTxtOutputFolder().getText();
+			config.setPathToSubtitleFile(pathToSubtitleFile);
+			config.setPathToAudioFile(pathToAudioFile);
+			config.setPathToOutputFolder(pathToOutputFolder);
+			
+			String subtitleType = config.getSubtitleFormat().name();
+			switch(subtitleType){
+			case "Audacity":
+				AudacityFileReader afr = new AudacityFileReader();
+				afr.readFile();
+				afr.mergeCommas();
+				break;
+			case "SubRip":
+				System.out.println("Youtube");
+				break;
+			}
+			
 			cardLayout.show(MainPane.this, SUBTITLE_REVIEW_VIEW);
 		}
 
@@ -141,7 +176,8 @@ public class MainPane extends JPanel {
 		@Override
 		public void nextHasBeenClicked() {
 			// TODO Auto-generated method stub
-			
+			MP3Splitter.splitMP3File();
+			CSVGenerator.createCSV();
 		}
 
 		@Override

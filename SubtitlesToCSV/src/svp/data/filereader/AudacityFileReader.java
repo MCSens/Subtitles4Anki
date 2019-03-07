@@ -29,7 +29,7 @@ public class AudacityFileReader extends FileReader{
 		this.configurationTable = ConfigurationTable.getConfigurationTable();
 		this.subtitleDataholder = SubtitleDataholder.getSubtitleDataholder();
 		this.movieName = movieName;
-		configurationTable.setMovieName(movieName);
+		configurationTable.setMovieTitle(movieName);
 		
 		this.pathToSubtitleFile = pathToSubtitleFile;
 		configurationTable.setPathToSubtitleFile(pathToSubtitleFile);
@@ -41,13 +41,13 @@ public class AudacityFileReader extends FileReader{
 		this.subtitles = new ArrayList();
 	}
 	
-	public AudacityFileReader(String[] languages) {
+	public AudacityFileReader() {
 		this.configurationTable = ConfigurationTable.getConfigurationTable();
 		this.subtitleDataholder = SubtitleDataholder.getSubtitleDataholder();
-		this.movieName = configurationTable.getMovieName();
+		this.movieName = configurationTable.getMovieTitle();
 		this.pathToSubtitleFile = configurationTable.getPathToSubtitleFile();
 		this.pathToAudioFile = configurationTable.getPathToAudioFile();
-		this.languages = languages;
+		this.languages = subtitleDataholder.getLanguages();
 		this.subtitles = new ArrayList();
 	}
 	
