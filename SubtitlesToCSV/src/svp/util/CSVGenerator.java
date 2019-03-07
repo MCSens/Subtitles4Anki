@@ -13,6 +13,47 @@ import svp.data.subtitlecontainer.SubtitleLiteral;
 
 public class CSVGenerator {
 
+	public static void createCSV(String outputPath) {
+	    try {
+	    	ConfigurationTable configurationTable = ConfigurationTable.getConfigurationTable();
+	    	SubtitleDataholder subtitleDataholder = SubtitleDataholder.getSubtitleDataholder();
+			String pathToAudioFile = configurationTable.getPathToAudioFile();
+			ArrayList<String[]> splitTimestamps = subtitleDataholder.getSplitTimestamps();
+			ArrayList<SubtitleContainer> subtitles = (ArrayList<SubtitleContainer>) subtitleDataholder.getSubtitles();
+			String[] languages = subtitleDataholder.getLanguages();
+			//String outputPath = configurationTable.getPathToOutputFolder();
+			String movieName = configurationTable.getMovieName();
+			
+			//Open Writer to write into File
+			String csvFileName = outputPath+"\\"+movieName+".csv";
+			System.out.println("TRACE createCSV Full CSV Name: "+csvFileName);
+	    	PrintWriter writer = new PrintWriter(new File(csvFileName)); 
+	    	
+			  ////////////////////////////////
+			 //			Write Content	   //
+			////////////////////////////////
+	    	for(SubtitleContainer sc: subtitles) {
+	    		String row = "";
+	    		ArrayList<SubtitleLiteral> literals = sc.getTranslations();
+	    		for(SubtitleLiteral sl: literals) {
+	    			row += sl.getText() +";";
+	    		}
+	    		row += "[sound:"+sc.getOutputFileName()+".mp3]\n";
+	    		System.out.println("TRACE - Row to add to CSV File: "+row);
+	    		
+	    		writer.write(row);
+	    	}
+	    	
+	    	//Close Writer and Commit to file;
+	        writer.close();
+	        System.out.println("done!");
+	        
+	    } catch (Exception e) {
+	        System.out.println(e.getMessage());
+	    }
+	}
+	
+	//To be removed
 	public static void createCSV(FileReader fr, String outputPath) {
 	    try {
 	    	ConfigurationTable configurationTable = ConfigurationTable.getConfigurationTable();

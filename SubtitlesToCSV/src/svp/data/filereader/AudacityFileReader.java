@@ -70,7 +70,7 @@ public class AudacityFileReader extends FileReader{
 				}
  				AudacitySubtitleContainer asc = new AudacitySubtitleContainer(this.movieName, splitted, this.languages);
  				if(asc.getValid()) {
- 					subtitles.add(asc);
+ 					//subtitles.add(asc);
  					this.subtitleDataholder.addSubtitleContainer(asc);
  				}
  				else {

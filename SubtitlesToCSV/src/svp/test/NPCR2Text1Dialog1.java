@@ -9,15 +9,21 @@ public class NPCR2Text1Dialog1 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		//AudacityTestSubtitleFile
-		AudacityFileReader afr = new AudacityFileReader("NPCR2-Text1-Dialog2", 
-				"C:\\Users\\MCSens\\Subtitles\\SubtitleFiles\\NPC2-Text1-Dialog2-correction.txt", 
-				"C:\\Users\\MCSens\\Subtitles\\Audio\\02_Text1_Dialog2.mp3", 
-				new String[]{"Hanzi","Pinyin","English"});
+		String movieName = "NPCR2-Text1-Dialog2";
+		String subtitleFilePath = "C:\\Users\\MCSens\\Subtitles\\SubtitleFiles\\NPC2-Text1-Dialog2.txt";
+		String audioFilePath = "C:\\Users\\MCSens\\Subtitles\\Audio\\02_Text1_Dialog2.mp3";
+		String[] languages = new String[]{"Hanzi","Pinyin","English"};
+		AudacityFileReader afr = new AudacityFileReader(movieName, 
+				subtitleFilePath, 
+				audioFilePath, 
+				languages);
 		afr.readFile();
 		//afr.mergeCommas();
 		MP3Splitter.splitMP3File();
-		CSVGenerator.createCSV(afr, "C:\\Users\\MCSens\\Subtitles\\SubtitleFiles\\");
+		String outputPath = "C:\\Users\\MCSens\\Subtitles\\SubtitleFiles\\";
+		CSVGenerator.createCSV(outputPath);
+		//Version without Subtitle Dataholder
+		//CSVGenerator.createCSV(afr, "C:\\Users\\MCSens\\Subtitles\\SubtitleFiles\\");
 		//System.out.println(afr);
 	}
 }
