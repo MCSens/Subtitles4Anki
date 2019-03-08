@@ -22,12 +22,25 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import svp.data.main.ConfigurationTable;
+import svp.data.main.SubtitleDataholder;
+import svp.data.main.SubtitleTableModel;
 import svp.data.main.SubtitleType;
 import svp.gui.controller.IConfigurationViewController;
 import svp.gui.controller.ISubtitleReviewViewController;
+import javax.swing.JTable;
 
 
 public class SubtitleReviewView extends AbstractView<ISubtitleReviewViewController> implements ISubtitleReviewView {
+	private JTable table;
+
+	
+	public JTable getTable() {
+		return table;
+	}
+
+	public void setTable(JTable table) {
+		this.table = table;
+	}
 
 	public SubtitleReviewView(ISubtitleReviewViewController controller) {
     	super(controller);
@@ -63,30 +76,38 @@ public class SubtitleReviewView extends AbstractView<ISubtitleReviewViewControll
         	getViewController().cancelHasBeenClicked();
 		});
 		
-		
 		JButton btnBack = new JButton("Back");
 		btnBack.setBackground(Color.LIGHT_GRAY);
 		btnBack.addActionListener((ActionEvent e) -> {
             	getViewController().backHasBeenClicked();
         });
 		
+		table = new JTable();
+		//SubtitleTableModel stm = SubtitleDataholder.getSubtitleDataholder().createTableModel();
+		//table.setModel(stm);
+		
 		  ///////////////////////////
 		 //		Layout Setting	  //
 		///////////////////////////		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
+			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(lblSubtitleReview)
-					.addContainerGap(286, Short.MAX_VALUE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(213, Short.MAX_VALUE)
-					.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(btnNext, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(btnCancel, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addContainerGap(87, Short.MAX_VALUE)
+							.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(btnNext, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(btnCancel, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addContainerGap()
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGap(10)
+									.addComponent(table, GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE))
+								.addComponent(lblSubtitleReview))))
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
@@ -94,7 +115,9 @@ public class SubtitleReviewView extends AbstractView<ISubtitleReviewViewControll
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(lblSubtitleReview)
-					.addGap(288)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(table, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(277)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnCancel)
 						.addComponent(btnNext)

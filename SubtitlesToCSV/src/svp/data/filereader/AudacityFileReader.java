@@ -38,6 +38,8 @@ public class AudacityFileReader extends FileReader{
 		configurationTable.setPathToAudioFile(pathToAudioFile);
 		
 		this.languages = languages;
+		subtitleDataholder.setLanguages(languages);
+		
 		this.subtitles = new ArrayList();
 	}
 	

@@ -2,13 +2,16 @@ package svp.gui.main;
 
 import java.awt.CardLayout;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 
 import svp.data.filereader.AudacityFileReader;
 import svp.data.main.ConfigurationTable;
 import svp.data.main.SubtitleDataholder;
+import svp.data.main.SubtitleTableModel;
 import svp.data.main.SubtitleType;
 import svp.gui.controller.IConfigurationViewController;
 import svp.gui.controller.IFileChooserViewController;
@@ -117,6 +120,12 @@ public class MainPane extends JPanel {
 				break;
 			}
 			
+			/*
+			JTable table = ((SubtitleReviewView) subtitleReviewView).getTable();
+			SubtitleTableModel stm = SubtitleDataholder.getSubtitleDataholder().createTableModel();
+			System.out.println(stm);
+			table.setModel(stm);
+			*/
 			cardLayout.show(MainPane.this, SUBTITLE_REVIEW_VIEW);
 		}
 
@@ -188,7 +197,8 @@ public class MainPane extends JPanel {
 		@Override
 		public void cancelHasBeenClicked() {
 			// TODO Auto-generated method stub
-			
+			System.out.println("Repainterino!");
+			subtitleReviewView.getView().repaint();
 		}
     	
     }

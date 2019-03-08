@@ -1,5 +1,5 @@
 package svp.data.main;
 
 public enum SubtitleType {
-	SubRip, Audacity;
+	Audacity, SubRip;
 }

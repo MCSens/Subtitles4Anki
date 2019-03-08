@@ -93,6 +93,7 @@ public class ConfigurationView extends AbstractView<IConfigurationViewController
 		lblUseAudio.setForeground(new Color(255, 250, 205));
 		
 		isAudioEnabledCheckbox = new JCheckBox("");
+		isAudioEnabledCheckbox.setSelected(true);
 		isAudioEnabledCheckbox.setBackground(new Color(47, 79, 79));
 		
 		JLabel lblCleanup = new JLabel("Clean Up");
@@ -103,6 +104,7 @@ public class ConfigurationView extends AbstractView<IConfigurationViewController
 		lblMergeCommasEnabled.setForeground(new Color(255, 250, 205));
 		
 		isMergeCommasEnabledCheckbox = new JCheckBox("");
+		isMergeCommasEnabledCheckbox.setSelected(true);
 		isMergeCommasEnabledCheckbox.setBackground(new Color(47, 79, 79));
 		
 		

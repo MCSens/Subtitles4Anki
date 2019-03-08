@@ -89,5 +89,13 @@ public abstract class SubtitleContainer {
 	public boolean getValid() {
 		return valid;
 	}
+	public ArrayList<String> getLiteralTexts() {
+		// Method is used to create the Data for the TableModel
+		ArrayList<String> literalTexts = new ArrayList<String>();
+		for(SubtitleLiteral sl: translations) {
+			literalTexts.add(sl.getText());
+		}
+		return literalTexts;
+	}
 	
 }
