@@ -101,7 +101,7 @@ public class FileChooserView extends AbstractView<IFileChooserViewController> im
 		JLabel lblSubtitleFile = new JLabel("Subtitle File");
 		lblSubtitleFile.setForeground(new Color(128, 128, 0));
 		lblSubtitleFile.setFont(new Font("Tahoma", Font.BOLD, 13));
-		txtSubtitleFile = new JTextField();
+		txtSubtitleFile = new JTextField("C:\\Users\\MCSens\\Subtitles\\SubtitleFiles\\NPC2-Text1-Dialog2.txt");
 		txtSubtitleFile.setColumns(10);
 		JButton btnSubtitleFile = new JButton("Select");
 		btnSubtitleFile.setBackground(Color.LIGHT_GRAY);
@@ -115,7 +115,7 @@ public class FileChooserView extends AbstractView<IFileChooserViewController> im
 		JLabel lblAudioFile = new JLabel("Audio File");
 		lblAudioFile.setForeground(new Color(128, 128, 0));
 		lblAudioFile.setFont(new Font("Tahoma", Font.BOLD, 13));		
-		txtAudioFile = new JTextField();
+		txtAudioFile = new JTextField("C:\\Users\\MCSens\\Subtitles\\Audio\\02_Text1_Dialog2.mp3");
 		txtAudioFile.setColumns(10);
 		JButton btnAudioFile = new JButton("Select");
 		btnAudioFile.setBackground(Color.LIGHT_GRAY);
@@ -142,7 +142,7 @@ public class FileChooserView extends AbstractView<IFileChooserViewController> im
 		JLabel lblOutputFolder = new JLabel("Output Folder");
 		lblOutputFolder.setForeground(new Color(128, 128, 0));
 		lblOutputFolder.setFont(new Font("Tahoma", Font.BOLD, 13));
-		txtOutputFolder = new JTextField();
+		txtOutputFolder = new JTextField("C:\\Users\\MCSens\\Subtitles\\SubtitleFiles");
 		txtOutputFolder.setColumns(10);
 		JButton btnOutputFolder = new JButton("Select");
 		btnOutputFolder.setBackground(Color.LIGHT_GRAY);
@@ -192,7 +192,7 @@ public class FileChooserView extends AbstractView<IFileChooserViewController> im
 		///////////////////////////		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
+			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
@@ -200,24 +200,23 @@ public class FileChooserView extends AbstractView<IFileChooserViewController> im
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(10)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(txtOutputFolder, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 450, GroupLayout.PREFERRED_SIZE)
-								.addComponent(txtAudioFile, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 450, GroupLayout.PREFERRED_SIZE)
-								.addComponent(txtSubtitleFile, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 450, GroupLayout.PREFERRED_SIZE))
+								.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+									.addComponent(txtAudioFile, GroupLayout.PREFERRED_SIZE, 438, GroupLayout.PREFERRED_SIZE)
+									.addComponent(txtOutputFolder, GroupLayout.PREFERRED_SIZE, 438, GroupLayout.PREFERRED_SIZE))
+								.addComponent(txtSubtitleFile, GroupLayout.PREFERRED_SIZE, 438, GroupLayout.PREFERRED_SIZE))
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(btnOutputFolder, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addComponent(btnAudioFile, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(btnSubtitleFile, GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)))
+								.addComponent(btnSubtitleFile, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+								.addComponent(btnOutputFolder, GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)))
 						.addComponent(lblAudioFile, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblOutputFolder, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(24, Short.MAX_VALUE))
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-					.addContainerGap(237, Short.MAX_VALUE)
-					.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(btnNext, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(btnCancel, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblOutputFolder, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
+						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+							.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(btnNext, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(btnCancel, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
@@ -241,7 +240,7 @@ public class FileChooserView extends AbstractView<IFileChooserViewController> im
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(txtOutputFolder, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnOutputFolder))
-					.addGap(130)
+					.addGap(180)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnCancel)
 						.addComponent(btnNext)

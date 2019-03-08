@@ -17,6 +17,7 @@ public class CSVGenerator {
 	    try {
 	    	ConfigurationTable configurationTable = ConfigurationTable.getConfigurationTable();
 	    	SubtitleDataholder subtitleDataholder = SubtitleDataholder.getSubtitleDataholder();
+	    	
 			String pathToAudioFile = configurationTable.getPathToAudioFile();
 			ArrayList<String[]> splitTimestamps = subtitleDataholder.getSplitTimestamps();
 			ArrayList<SubtitleContainer> subtitles = (ArrayList<SubtitleContainer>) subtitleDataholder.getSubtitles();

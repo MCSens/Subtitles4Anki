@@ -7,6 +7,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.SwingUtilities;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 
 import svp.data.filereader.AudacityFileReader;
 import svp.data.main.ConfigurationTable;
@@ -120,12 +122,24 @@ public class MainPane extends JPanel {
 				break;
 			}
 			
-			/*
+			
 			JTable table = ((SubtitleReviewView) subtitleReviewView).getTable();
-			SubtitleTableModel stm = SubtitleDataholder.getSubtitleDataholder().createTableModel();
-			System.out.println(stm);
-			table.setModel(stm);
-			*/
+			table.getModel().addTableModelListener(new TableModelListener() {
+				   @Override
+				   public void tableChanged(TableModelEvent e) {
+				       // access the values of the model and save them to the file here
+					   System.out.println("Was geht hier ab?");
+				   }
+				});
+			
+			SubtitleDataholder sdh = SubtitleDataholder.getSubtitleDataholder();
+			table.setModel(sdh);
+			
+			//This Version uses the TableModel with Object[][]
+			//SubtitleTableModel stm = SubtitleDataholder.getSubtitleDataholder().createTableModel();
+			//System.out.println(stm);
+			//table.setModel(stm);
+			
 			cardLayout.show(MainPane.this, SUBTITLE_REVIEW_VIEW);
 		}
 

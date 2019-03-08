@@ -120,13 +120,14 @@ public class ConfigurationView extends AbstractView<IConfigurationViewController
 		
 		txtSubtitleLanguages = new JTextArea();
 		txtSubtitleLanguages.setFont(new Font("Monospaced", Font.PLAIN, 11));
-		txtSubtitleLanguages.setText("Seprate Language with ;\r\ne.g.: Hanzi; English;\r\n");
+		txtSubtitleLanguages.setText("Hanzi; Pinyin; English");
+		//txtSubtitleLanguages.setText("Seprate Language with ;\r\ne.g.: Hanzi; English\r\n");
 		txtSubtitleLanguages.setColumns(10);
 		
 		JLabel lblMovieTitle = new JLabel("Movie Title");
 		lblMovieTitle.setForeground(new Color(255, 250, 205));
 		
-		txtMovieTitle = new JTextField();
+		txtMovieTitle = new JTextField("Test");
 		txtMovieTitle.setColumns(10);
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(

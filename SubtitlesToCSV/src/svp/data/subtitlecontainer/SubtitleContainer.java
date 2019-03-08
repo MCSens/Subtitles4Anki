@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 public abstract class SubtitleContainer {
 	int ccId; //ID of Subtitle, unique for each file
+	protected ArrayList<SubtitleLiteral> translations;
 	protected String startTimestamp;
 	protected String endTimestamp;
 	protected String text = ""; //DAS HIER MUSS EIN ARRAY WERDEN! Jede Sprache eins, es gibt kein Sprach literal dazu
 	protected String outputFileName;
-	protected ArrayList<SubtitleLiteral> translations;
 	protected boolean valid;
 	
 	public abstract String convertStartTimestamp(String timestamp);
@@ -98,4 +98,15 @@ public abstract class SubtitleContainer {
 		return literalTexts;
 	}
 	
+	public String getLiteralOnColumn(int column) {
+		return translations.get(column).getText();
+	}
+	
+	public String setLiteralOnColumn(String value, int column) {
+		SubtitleLiteral sc = translations.get(column);
+		String before = sc.toString();
+		sc.setText(value);
+		System.out.println("TRACE Changed SubtitleLiteral from ||"+before+" to "+sc.toString());
+		return translations.get(column).getText();
+	}
 }

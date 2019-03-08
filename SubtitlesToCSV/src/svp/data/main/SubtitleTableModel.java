@@ -26,6 +26,10 @@ public class SubtitleTableModel extends AbstractTableModel {
             { "Philip", "Milne", "Pool", new Integer(10),
                 new Boolean(false) } };
     */
+	public boolean isCellEditable(int row, int col) { 
+	    return true; 
+	}
+	
 	public String[] getColumnNames() {
 		return columnNames;
 	}
@@ -68,4 +72,14 @@ public class SubtitleTableModel extends AbstractTableModel {
     public Object getValueAt(int row, int col) {
         return data[row][col];
     }
+    
+    @Override
+    public void setValueAt(Object value, int row, int col) {
+    	SubtitleDataholder subtitleDataholder = SubtitleDataholder.getSubtitleDataholder();
+    	int id = (int) this.getValueAt(row, col);
+    	
+    	System.out.println("CAlled?!");
+        data[row][col] = value;
+    }
+    
 }
