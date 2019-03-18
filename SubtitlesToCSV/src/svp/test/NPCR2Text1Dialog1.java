@@ -1,15 +1,18 @@
 package svp.test;
 
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import svp.data.filereader.AudacityFileReader;
-import svp.data.filereader.SRTFileReader;
 import svp.data.main.ConfigurationTable;
 import svp.util.CSVGenerator;
 import svp.util.MP3Splitter;
 
 public class NPCR2Text1Dialog1 {
+	private static Logger log = (Logger) LoggerFactory.getLogger("NPCR2Text1Dialog1");
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		String movieName = "NPCR2-Text1-Dialog2";
 		String subtitleFilePath = "C:\\Users\\MCSens\\Subtitles\\SubtitleFiles\\NPC2-Text1-Dialog2.txt";
 		String audioFilePath = "C:\\Users\\MCSens\\Subtitles\\Audio\\02_Text1_Dialog2.mp3";
@@ -25,6 +28,8 @@ public class NPCR2Text1Dialog1 {
 		ConfigurationTable config = ConfigurationTable.getConfigurationTable();
 		config.setPathToOutputFolder(outputPath);
 		CSVGenerator.createCSV();
+		log.debug("Test");
+		log.error("Oh je");
 		//Version without Subtitle Dataholder
 		//CSVGenerator.createCSV(afr, "C:\\Users\\MCSens\\Subtitles\\SubtitleFiles\\");
 		//System.out.println(afr);
