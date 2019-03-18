@@ -6,13 +6,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import svp.data.main.ConfigurationTable;
 import svp.data.main.SubtitleDataholder;
 import svp.data.subtitlecontainer.AudacitySubtitleContainer;
 import svp.data.subtitlecontainer.SRTSubtitleContainer;
 import svp.data.subtitlecontainer.SubtitleContainer;
+import svp.test.NPCR2Text1Dialog1;
 
 public class AudacityFileReader extends FileReader{
+	private static Logger log = (Logger) LoggerFactory.getLogger(AudacityFileReader.class);
 
 	public AudacityFileReader(String movieName, String pathToSubtitleFile, String pathToAudioFile){	
 		// TODO Auto-generated method stub
@@ -56,7 +61,8 @@ public class AudacityFileReader extends FileReader{
 	public void readFile() {
 		Scanner sc;
 		try {
-			System.out.println("INFO --- Start Reading of File "+this.pathToSubtitleFile+" ---");
+			log.info("Start Reading of File "+this.pathToSubtitleFile);
+			//System.out.println("INFO --- Start Reading of File "+this.pathToSubtitleFile+" ---");
 			
 			int id = 1;
 			sc = new Scanner(new File(this.pathToSubtitleFile), "utf-8");
@@ -64,11 +70,11 @@ public class AudacityFileReader extends FileReader{
 			while(sc.hasNextLine()) {
 				String fileLine = sc.nextLine();
 
-				System.out.println("DEBUG - Read Line: "+fileLine);
+				log.debug("Read Line: "+fileLine);
 				fileLine+="\t"+(id++);
 				String[] splitted = fileLine.split("\\t");
 				for(int i = 0; i < splitted.length; i++) {
-					System.out.println("TRACE - Splitted ["+i+"]: "+splitted[i]);
+					log.trace("Splitted ["+i+"]: "+splitted[i]);
 				}
  				AudacitySubtitleContainer asc = new AudacitySubtitleContainer(this.movieName, splitted, this.languages);
  				if(asc.getValid()) {
@@ -76,21 +82,20 @@ public class AudacityFileReader extends FileReader{
  					this.subtitleDataholder.addSubtitleContainer(asc);
  				}
  				else {
- 					System.out.println("WARN - Issue found with "+asc+" and thus is being skipped");
+ 					log.warn("Issue found with "+asc+" and thus is being skipped");
  				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			// TODO Auto-generated catch block
 		} finally {
-			System.out.println("INFO --- Reading of File Completed ---");
+			log.info("Reading of File Completed");
 		}
 	}
 
 	public String toString() {
 		String result = "";
   		for(SubtitleContainer sr: subtitles) {
-  			//System.out.println(sr);
   			result+=sr+"\n";
 		}
 		return result;

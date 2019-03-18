@@ -2,7 +2,12 @@ package svp.data.subtitlecontainer;
 
 import java.util.ArrayList;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public abstract class SubtitleContainer {
+	private static Logger log = (Logger) LoggerFactory.getLogger(SubtitleContainer.class);
+	
 	int ccId; //ID of Subtitle, unique for each file
 	protected ArrayList<SubtitleLiteral> translations;
 	protected String startTimestamp;
@@ -106,7 +111,7 @@ public abstract class SubtitleContainer {
 		SubtitleLiteral sc = translations.get(column);
 		String before = sc.toString();
 		sc.setText(value);
-		System.out.println("TRACE Changed SubtitleLiteral from ||"+before+" to "+sc.toString());
+		log.trace("Changed SubtitleLiteral from ||"+before+" to "+sc.toString());
 		return translations.get(column).getText();
 	}
 }

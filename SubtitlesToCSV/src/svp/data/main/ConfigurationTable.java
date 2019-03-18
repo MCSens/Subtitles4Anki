@@ -2,7 +2,14 @@ package svp.data.main;
 
 import java.util.ArrayList;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import svp.data.filereader.AudacityFileReader;
+
 public class ConfigurationTable {
+	private static Logger log = (Logger) LoggerFactory.getLogger(ConfigurationTable.class);
+	
 	private static ConfigurationTable instance = new ConfigurationTable();
 	private SubtitleType subtitleFormat;
 	private boolean isAudioEnabled;
@@ -27,7 +34,7 @@ public class ConfigurationTable {
 	
 	
 	public void setPathToOutputFolder(String pathToOutputFolder) {
-		System.out.println("TRACE Output Path has been set to "+pathToOutputFolder);
+		log.trace("Output Path has been set to "+pathToOutputFolder);
 		this.pathToOutputFolder = pathToOutputFolder;
 	}
 	
@@ -39,7 +46,7 @@ public class ConfigurationTable {
 	}
 
 	public void setSubtitleFormat(SubtitleType subtitleFormat) {
-		System.out.println("TRACE Subtitle Format has been set to "+subtitleFormat);
+		log.trace("Subtitle Format has been set to "+subtitleFormat);
 		this.subtitleFormat = subtitleFormat;
 	}
 
@@ -48,7 +55,7 @@ public class ConfigurationTable {
 	}
 
 	public void setAudioEnabled(boolean isAudioEnabled) {
-		System.out.println("TRACE Audio Enabled has been set to "+isAudioEnabled);
+		log.trace("Audio Enabled has been set to "+isAudioEnabled);
 		this.isAudioEnabled = isAudioEnabled;
 	}
 
@@ -57,7 +64,7 @@ public class ConfigurationTable {
 	}
 
 	public void setMergeCommasEnabled(boolean isMergeCommasEnabled) {
-		System.out.println("TRACE Merge Commas Enabled has been set to "+isMergeCommasEnabled);
+		log.trace("Merge Commas Enabled has been set to "+isMergeCommasEnabled);
 		this.isMergeCommasEnabled = isMergeCommasEnabled;
 	}
 
@@ -74,7 +81,7 @@ public class ConfigurationTable {
 	}
 	
 	public void setMovieTitle(String movieTitle) {
-		System.out.println("TRACE Movie Title has been set to "+movieTitle);
+		log.trace("Movie Title has been set to "+movieTitle);
 		this.movieTitle = movieTitle;
 	}
 	
@@ -83,7 +90,7 @@ public class ConfigurationTable {
 	}
 	
 	public void setPathToSubtitleFile(String pathToSubtitleFile) {
-		System.out.println("TRACE Subtitle Path has been set to "+pathToSubtitleFile);
+		log.trace("Subtitle Path has been set to "+pathToSubtitleFile);
 		this.pathToSubtitleFile = pathToSubtitleFile;
 	}
 	
@@ -92,7 +99,7 @@ public class ConfigurationTable {
 	}
 	
 	public void setPathToAudioFile(String pathToAudioFile) {
-		System.out.println("TRACE Audio Path has been set to "+pathToAudioFile);
+		log.trace("Audio Path has been set to "+pathToAudioFile);
 		this.pathToAudioFile = pathToAudioFile;
 	}
 	

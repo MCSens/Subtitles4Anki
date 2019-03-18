@@ -1,0 +1,4 @@
+1.306187	5.358033	Shifu, ni hao	Teacher, Hello!	Lehrer, Hallo!
+5.384689	7.597210	Ni hao, shifu	Hello Teacher	Hallo Lehrer!
+7.623867	10.556124	Qingwen, Zhe shi shenme	Excuse me, what is this?	Entschuldigung, was ist das?
+62.00000	63.00000	End	End	Ende

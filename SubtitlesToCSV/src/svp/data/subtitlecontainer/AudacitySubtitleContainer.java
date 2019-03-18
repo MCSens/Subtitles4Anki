@@ -5,7 +5,13 @@ import java.text.Normalizer.Form;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import svp.data.filereader.AudacityFileReader;
+
 public class AudacitySubtitleContainer extends SubtitleContainer{
+	private static Logger log = (Logger) LoggerFactory.getLogger(AudacitySubtitleContainer.class);
 	
 	public AudacitySubtitleContainer(String movieName, String[] split, String[] languages) { //Should also get an Array of elements to remove
 		if(languages == null) {
@@ -13,7 +19,7 @@ public class AudacitySubtitleContainer extends SubtitleContainer{
 		}
 		// TODO Auto-generated constructor stub
 		if(split.length<4) {
-			System.out.println("This row contained less than 4 Elements and thus is not correct "+Arrays.toString(split));
+			log.warn("This row contained less than 4 Elements and thus is not correct "+Arrays.toString(split));
 			this.valid = false;
 		}
 		else {
@@ -37,10 +43,10 @@ public class AudacitySubtitleContainer extends SubtitleContainer{
 				if(languages[i]!="-" && languages[i] != "" && i<split.length+2) {
 					String language = languages[i];
 					String translation = split[i+2];
-					System.out.println("TRACE - Language: "+language +" Translation: "+translation);
+					log.trace("Language: "+language +" Translation: "+translation);
 					SubtitleLiteral sl = new SubtitleLiteral(language, translation);
 					subtitles.add(sl);
-					System.out.println("TRACE Added "+sl);
+					log.trace("Added "+sl);
 				}
 			}
 			this.translations = subtitles;
@@ -72,7 +78,7 @@ public class AudacitySubtitleContainer extends SubtitleContainer{
 	}
 
 	public String convertStartTimestamp(String timestamp) {
-		System.out.println("TRACE Got Timestamp: "+timestamp);
+		log.trace("Got Timestamp: "+timestamp);
 		timestamp = timestamp.replaceAll("\\s+","");
 		String[] tempTsp = timestamp.split("\\.");
 		String result="";
@@ -90,12 +96,12 @@ public class AudacitySubtitleContainer extends SubtitleContainer{
 				result = "00."+(second);		
 			}
 		}
-		System.out.println("TRACE Result Timestamp: "+result);
+		log.trace("Result Timestamp: "+result);
 		return result;
 	}
 	
 	public String convertEndTimestamp(String timestamp) {
-		System.out.println("TRACE Got Timestamp: "+timestamp);
+		log.trace("Got Timestamp: "+timestamp);
 		timestamp = timestamp.replaceAll("\\s+","");
 		String[] tempTsp = timestamp.split("\\.");
 		String result="";
@@ -121,7 +127,7 @@ public class AudacitySubtitleContainer extends SubtitleContainer{
 				result = "00."+(second+1);		
 			}
 		}
-		System.out.println("TRACE Result Timestamp: "+result);
+		log.trace("Result Timestamp: "+result);
 		return result;
 	}
 }

@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import svp.data.filereader.FileReader;
 import svp.data.main.ConfigurationTable;
 import svp.data.main.SubtitleDataholder;
@@ -12,9 +15,11 @@ import svp.data.subtitlecontainer.SubtitleContainer;
 import svp.data.subtitlecontainer.SubtitleLiteral;
 
 public class CSVGenerator {
+	private static Logger log = (Logger) LoggerFactory.getLogger(CSVGenerator.class);
 
 	public static void createCSV() {
 	    try {
+	    	log.info("Begin Generation of CSV File");
 	    	ConfigurationTable configurationTable = ConfigurationTable.getConfigurationTable();
 	    	SubtitleDataholder subtitleDataholder = SubtitleDataholder.getSubtitleDataholder();
 	    	
@@ -28,7 +33,7 @@ public class CSVGenerator {
 			String outputPath = configurationTable.getPathToOutputFolder();
 			//Open Writer to write into File
 			String csvFileName = outputPath+"\\"+movieName+".csv";
-			System.out.println("TRACE createCSV Full CSV Name: "+csvFileName);
+			log.trace("Full CSV Name: "+csvFileName);
 	    	PrintWriter writer = new PrintWriter(new File(csvFileName)); 
 	    	
 			  ////////////////////////////////
@@ -40,15 +45,15 @@ public class CSVGenerator {
 	    		for(SubtitleLiteral sl: literals) {
 	    			row += sl.getText() +";";
 	    		}
-	    		row += "[sound:"+sc.getOutputFileName()+".mp3]\n";
-	    		System.out.println("TRACE - Row to add to CSV File: "+row);
-	    		
+	    		row += "[sound:"+sc.getOutputFileName()+".mp3]";
+	    		log.debug("Row to add to CSV File: "+row);
+	    		row +="\n"; //Add line break after logging to prevent empty row in logfile
 	    		writer.write(row);
 	    	}
 	    	
 	    	//Close Writer and Commit to file;
 	        writer.close();
-	        System.out.println("done!");
+	        log.info("Finished Creation of CSV File");
 	        
 	    } catch (Exception e) {
 	        System.out.println(e.getMessage());
@@ -78,7 +83,7 @@ public class CSVGenerator {
 	    			row += sl.getText() +";";
 	    		}
 	    		row += "[sound:"+sc.getOutputFileName()+".mp3]\n";
-	    		System.out.println("TRACE - Row to add to CSV File: "+row);
+	    		log.debug(" Row to add to CSV File: "+row);
 	    		
 	    		writer.write(row);
 	    	}

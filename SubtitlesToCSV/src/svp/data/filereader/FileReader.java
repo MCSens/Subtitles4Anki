@@ -3,12 +3,17 @@ package svp.data.filereader;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import svp.data.main.ConfigurationTable;
 import svp.data.main.SubtitleDataholder;
 import svp.data.subtitlecontainer.SRTSubtitleContainer;
 import svp.data.subtitlecontainer.SubtitleContainer;
 
 public abstract class FileReader {
+	private static Logger log = (Logger) LoggerFactory.getLogger(FileReader.class);
+	
 	protected ConfigurationTable configurationTable;
 	protected SubtitleDataholder subtitleDataholder;
 	protected List<SubtitleContainer> subtitles;
@@ -97,7 +102,7 @@ public abstract class FileReader {
 			String end = sc.getEndTimestamp();
 			String[] timestampArray = new String[] {start, end};
 			timestamps.add(timestampArray);
-			System.out.println("TRACE - FileReader.getSplitTimestamps - Start:"+start+", End: "+end);
+			log.trace("FileReader.getSplitTimestamps - Start:"+start+", End: "+end);
 		}
 		return timestamps;
 	}

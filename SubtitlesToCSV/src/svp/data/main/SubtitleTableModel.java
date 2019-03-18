@@ -78,7 +78,6 @@ public class SubtitleTableModel extends AbstractTableModel {
     	SubtitleDataholder subtitleDataholder = SubtitleDataholder.getSubtitleDataholder();
     	int id = (int) this.getValueAt(row, col);
     	
-    	System.out.println("CAlled?!");
         data[row][col] = value;
     }
     

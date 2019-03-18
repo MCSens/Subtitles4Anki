@@ -6,9 +6,15 @@ import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import svp.data.filereader.AudacityFileReader;
 import svp.data.subtitlecontainer.SubtitleContainer;
 
 public class SubtitleDataholder extends AbstractTableModel{
+	private static Logger log = (Logger) LoggerFactory.getLogger(SubtitleDataholder.class);
+	
 	/*
 	 * Subtitle Container 1 -> SubtitleLiteral1 [Literal1, Literal2, Literal3]
 	 * SubtitleContainer2 -> SubtitleLiteral2 ..........
@@ -45,7 +51,7 @@ public class SubtitleDataholder extends AbstractTableModel{
 	}
 
 	public void addSubtitleContainer(SubtitleContainer sc) {
-		System.out.println("INFO added SubtitleContainer "+sc+" to SubtitleDataholder");
+		log.debug("Added SubtitleContainer "+sc+" to SubtitleDataholder");
 		this.subtitles.add(sc);
 	}
 	
@@ -56,7 +62,7 @@ public class SubtitleDataholder extends AbstractTableModel{
 			String end = sc.getEndTimestamp();
 			String[] timestampArray = new String[] {start, end};
 			timestamps.add(timestampArray);
-			System.out.println("TRACE - FileReader.getSplitTimestamps - Start:"+start+", End: "+end);
+			log.trace("FileReader.getSplitTimestamps - Start:"+start+", End: "+end);
 		}
 		return timestamps;
 	}
@@ -95,14 +101,14 @@ public class SubtitleDataholder extends AbstractTableModel{
 					tableRow.add(""+i);
 					tableRow.addAll(sc.getLiteralTexts());
 					//ArrayList<String> subtitleLiteralTexts = sc.getLiteralTexts();
-					System.out.println(tableRow);
+					log.trace("Added new Row to Data Model: "+tableRow);
 					Object[] tableRowObjectArray = tableRow.toArray();
 					if(i==4) {
 						int huhu=1;
 						huhu+=1;
 					}
 					for(int j = 0; j<tableRowObjectArray.length;j++) {
-						System.out.println("TRACE Table Data on Coordinates "+i+","+j+" has been set to "+tableRowObjectArray[j]);
+						log.trace("Table Data on Coordinates "+i+","+j+" has been set to "+tableRowObjectArray[j]);
 						tableData[i][j] = tableRowObjectArray[j];
 					}
 					tableDataList.add(tableRowObjectArray);

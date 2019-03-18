@@ -3,7 +3,13 @@ package svp.data.subtitlecontainer;
 import java.text.Normalizer;
 import java.text.Normalizer.Form;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import svp.data.filereader.AudacityFileReader;
+
 public class SRTSubtitleContainer extends SubtitleContainer{
+	private static Logger log = (Logger) LoggerFactory.getLogger(SRTSubtitleContainer.class);
 	
 	public SRTSubtitleContainer(int ccId, String startTimestamp, String endTimestamp, String text) {
 		super();
@@ -17,7 +23,7 @@ public class SRTSubtitleContainer extends SubtitleContainer{
 	public SRTSubtitleContainer(String[] split) {
 		// TODO Auto-generated constructor stub
 		if(split.length<2) {
-			System.out.println("This one was not correct :( ");
+			log.warn("Array "+split.toString()+"contains lett than 2 two rows and thus is not correct");
 			this.valid = false;
 		}
 		else if(split.length >= 3) {
