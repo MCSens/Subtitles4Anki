@@ -1,5 +1,14 @@
 package svp.data.subtitlecontainer;
 
+/**
+ * Contains the Language and the corresponding text.
+ * Will be stored in a list in the SubtitleContainers
+ * @see AudacitySubtitleContainer
+ * @see SRTSubtitleContainer
+ * 
+ * @author MCSens
+ *
+ */
 public class SubtitleLiteral {
 	String language;
 	String text;

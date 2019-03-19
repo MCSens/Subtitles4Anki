@@ -16,6 +16,16 @@ import svp.data.subtitlecontainer.SRTSubtitleContainer;
 import svp.data.subtitlecontainer.SubtitleContainer;
 import svp.test.NPCR2Text1Dialog1;
 
+/**
+ * This file is responsible for reading the File for Subtitle Type Audacity has been selected.
+ * 
+ * <p>
+ * Each line of the file will be converted into Subtitle Containers.
+ * The created Subtitle Containers are stored in SubtitleDataholder.
+ * </p>
+ * @see SubtitleDataholder
+ * 
+ */
 public class AudacityFileReader extends FileReader{
 	private static Logger log = (Logger) LoggerFactory.getLogger(AudacityFileReader.class);
 
@@ -49,6 +59,13 @@ public class AudacityFileReader extends FileReader{
 	}
 	
 	public AudacityFileReader() {
+		/**
+		 * Constructor that is being used in regular Program Flow via GUI
+		 * All Settings will be written into the Singletons 
+		 * 
+		 * @see #ConfigurationTable
+		 * @see #SubtitleDataholder
+		 */
 		this.configurationTable = ConfigurationTable.getConfigurationTable();
 		this.subtitleDataholder = SubtitleDataholder.getSubtitleDataholder();
 		this.movieName = configurationTable.getMovieTitle();
@@ -58,11 +75,16 @@ public class AudacityFileReader extends FileReader{
 		this.subtitles = new ArrayList();
 	}
 	
+	/**
+	 * This Methods reads the Subtitle File.
+	 * 
+	 * Creats AudacitySubtitleContainer and adds them to Singleton Subtitle Dataholder
+	 * 
+	 */
 	public void readFile() {
 		Scanner sc;
 		try {
 			log.info("Start Reading of File "+this.pathToSubtitleFile);
-			//System.out.println("INFO --- Start Reading of File "+this.pathToSubtitleFile+" ---");
 			
 			int id = 1;
 			sc = new Scanner(new File(this.pathToSubtitleFile), "utf-8");
@@ -78,7 +100,6 @@ public class AudacityFileReader extends FileReader{
 				}
  				AudacitySubtitleContainer asc = new AudacitySubtitleContainer(this.movieName, splitted, this.languages);
  				if(asc.getValid()) {
- 					//subtitles.add(asc);
  					this.subtitleDataholder.addSubtitleContainer(asc);
  				}
  				else {
@@ -87,7 +108,6 @@ public class AudacityFileReader extends FileReader{
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			// TODO Auto-generated catch block
 		} finally {
 			log.info("Reading of File Completed");
 		}

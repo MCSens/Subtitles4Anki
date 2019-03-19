@@ -12,6 +12,19 @@ import org.slf4j.LoggerFactory;
 import svp.data.filereader.AudacityFileReader;
 import svp.data.subtitlecontainer.SubtitleContainer;
 
+/**
+ * Singleton that contains the converted Subtitles.
+ * This will be accessed by all other classes.
+ * It will be filled by the implementations of FileReader.
+ * It extends Abstract Table Model and is used to fill the JTable to Check/Edit the data.
+ * Changing the Data will call the method {@link #setValueAt(Object, int, int)}.
+ * 
+ * 	@see AudacityFileReader
+ * 	@see SRTFileReader
+ * 
+ * @author MCSens
+ *
+ */
 public class SubtitleDataholder extends AbstractTableModel{
 	private static Logger log = (Logger) LoggerFactory.getLogger(SubtitleDataholder.class);
 	
@@ -67,63 +80,6 @@ public class SubtitleDataholder extends AbstractTableModel{
 		return timestamps;
 	}
 	
-	public SubtitleTableModel createTableModel() {
-		SubtitleTableModel stm = SubtitleTableModel.getSubtitleTableModel();
-		if(languages!=null && subtitles!=null) {
-			  ///////////////////////////
-			 //		 Table Header 	  //
-			///////////////////////////
-			ArrayList<String> tableHeader = new ArrayList<String>();
-			tableHeader.add("ID");
-			for(int i = 0; i<languages.length;i++) {
-				tableHeader.add(languages[i]);
-			}
-			Object[] objectArray = tableHeader.toArray();
-			//Columns are not correct
-			if(objectArray==null) {
-				stm.setColumnNames(null);
-				stm.setData(null);
-				return null;
-			}
-			else {
-				String[] columnNames = Arrays.asList(objectArray).toArray(new String[objectArray.length]);
-				stm.setColumnNames(columnNames);
-				int columnCount = objectArray.length;
-				  ///////////////////////////
-				 //		 Table Data 	  //
-				///////////////////////////
-				ArrayList<Object[]> tableDataList = new ArrayList<Object[]>();
-				int rowCount = subtitles.size();
-				Object[][] tableData = new Object[rowCount][columnCount];
-				for(int i = 0; i<subtitles.size();i++) {
-					SubtitleContainer sc = subtitles.get(i);
-					ArrayList<String> tableRow = new ArrayList<String>();
-					tableRow.add(""+i);
-					tableRow.addAll(sc.getLiteralTexts());
-					//ArrayList<String> subtitleLiteralTexts = sc.getLiteralTexts();
-					log.trace("Added new Row to Data Model: "+tableRow);
-					Object[] tableRowObjectArray = tableRow.toArray();
-					if(i==4) {
-						int huhu=1;
-						huhu+=1;
-					}
-					for(int j = 0; j<tableRowObjectArray.length;j++) {
-						log.trace("Table Data on Coordinates "+i+","+j+" has been set to "+tableRowObjectArray[j]);
-						tableData[i][j] = tableRowObjectArray[j];
-					}
-					tableDataList.add(tableRowObjectArray);
-				}	
-				Object[] rowData = tableDataList.toArray();
-				//int rowCount = rowData.length;
-				
-				
-				//Object[][] tableDataObjectArray= (Object[][]) tableDataList.toArray();
-				stm.setData(tableData);
-			}
-		}
-		return stm;
-	}
-
 	@Override
 	public int getColumnCount() {
 		// TODO Auto-generated method stub

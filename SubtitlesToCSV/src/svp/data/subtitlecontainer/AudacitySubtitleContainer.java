@@ -10,6 +10,14 @@ import org.slf4j.LoggerFactory;
 
 import svp.data.filereader.AudacityFileReader;
 
+/**
+ * 
+ * @author MCSens
+ *
+ * Represents a single Row of Data, one Flashcard if Subtitle Type Audacity is selected.
+ * Contains Text for the languages, start/end of Audio Snippet.
+ * 
+ */
 public class AudacitySubtitleContainer extends SubtitleContainer{
 	private static Logger log = (Logger) LoggerFactory.getLogger(AudacitySubtitleContainer.class);
 	
@@ -17,7 +25,6 @@ public class AudacitySubtitleContainer extends SubtitleContainer{
 		if(languages == null) {
 			languages = new String[] {"Chinese"};
 		}
-		// TODO Auto-generated constructor stub
 		if(split.length<4) {
 			log.warn("This row contained less than 4 Elements and thus is not correct "+Arrays.toString(split));
 			this.valid = false;
@@ -30,14 +37,9 @@ public class AudacitySubtitleContainer extends SubtitleContainer{
 				this.ccId = -1;
 			}
 			
-// 2019-02-24 BEGIN -- Instead of one field text use a array list to support multiple languages
-/*			this.startTimestamp = convertStartTimestamp(split[0]);
-			this.text = Normalizer.normalize(this.text, Form.NFD);
-			this.text = split[2];
-			this.ccId = Integer.valueOf(split[3]);
-			this.valid = true;
-*/		
 			this.startTimestamp = convertStartTimestamp(split[0]);
+			
+			//Split the Array to create the Literals
 			ArrayList<SubtitleLiteral> subtitles = new ArrayList<>();
 			for(int i = 0; i<languages.length;i++) {
 				if(languages[i]!="-" && languages[i] != "" && i<split.length+2) {
@@ -55,14 +57,12 @@ public class AudacitySubtitleContainer extends SubtitleContainer{
 			this.ccId = Integer.valueOf(split[split.length-1]);
 			this.valid = true;
 
-// 2019-02-24 END
-			
 			  ////////////////////////////////
 			 //			Clean Up 		   //
 			////////////////////////////////
 			this.endTimestamp = convertEndTimestamp(split[1]);
-			this.text = this.text.replaceAll("<i>", "");
-			this.text = this.text.replaceAll("</i>", "");
+			//this.text = this.text.replaceAll("<i>", "");
+			//this.text = this.text.replaceAll("</i>", "");
 			this.outputFileName = movieName+"_"+ccId+"_"+this.startTimestamp.replace(".", "")+"_"+this.endTimestamp.replace(".", "");
 			this.valid = true;
 		}
@@ -86,7 +86,6 @@ public class AudacitySubtitleContainer extends SubtitleContainer{
 			int minutes = 0;
 			int second = Integer.valueOf(tempTsp[0]); //always two digit, get rid of milli seconds
 			int millisecond = Integer.valueOf(tempTsp[1]);
-			//double value = second/60;
 			if(((double)second/(double)60) > 1) {
 				minutes = Integer.valueOf((second/60));
 				int seconds = second - minutes*60;
@@ -118,7 +117,6 @@ public class AudacitySubtitleContainer extends SubtitleContainer{
 					seconds = 0;
 				}
 				else {
-					//Add one Second to make up for cut of Miliseconds
 					seconds +=1;
 				}
 				result = minutes+"."+seconds;				

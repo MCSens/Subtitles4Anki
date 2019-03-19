@@ -1,0 +1,20 @@
+2019-03-19 17:58:15,454 [INFO] AudacityFileReader.java: Start Reading of File C:\Users\MCSens\Subtitles\SubtitleFiles\NPC2-Text1-Dialog2.txt
+2019-03-19 17:58:15,474 [INFO] AudacityFileReader.java: Reading of File Completed
+2019-03-19 17:58:15,474 [INFO] MP3Splitter.java: Start splitting of MP3 File C:\Users\MCSens\Subtitles\Audio\02_Text1_Dialog2.mp3
+2019-03-19 17:58:15,762 [INFO] MP3Splitter.java: Finished splitting of MP3 File into 25 Files
+2019-03-19 17:58:15,764 [INFO] CSVGenerator.java: Begin Generation of CSV File
+2019-03-19 17:58:15,814 [INFO] CSVGenerator.java: Finished Creation of CSV File
+2019-03-19 18:39:33,547 [INFO] AudacityFileReader.java: Start Reading of File C:\Users\MCSens\Subtitles\SubtitleFiles\NPC2-Text1-Dialog2.txt
+2019-03-19 18:39:33,557 [INFO] AudacityFileReader.java: Reading of File Completed
+2019-03-19 18:39:34,967 [INFO] MP3Splitter.java: Start splitting of MP3 File C:\Users\MCSens\Subtitles\Audio\02_Text1_Dialog2.mp3
+2019-03-19 18:39:35,197 [INFO] MP3Splitter.java: Finished splitting of MP3 File into 25 Files
+2019-03-19 18:39:35,199 [INFO] CSVGenerator.java: Begin Generation of CSV File
+2019-03-19 18:39:35,212 [INFO] CSVGenerator.java: Finished Creation of CSV File
+2019-03-19 20:54:27,480 [INFO] AudacityFileReader.java: Start Reading of File C:\Users\MCSens\Subtitles\SubtitleFiles\NPC2-Text1-Dialog2.txt
+2019-03-19 20:54:27,496 [INFO] AudacityFileReader.java: Reading of File Completed
+2019-03-19 20:54:29,839 [INFO] AudacityFileReader.java: Start Reading of File C:\Users\MCSens\Subtitles\SubtitleFiles\NPC2-Text1-Dialog2.txt
+2019-03-19 20:54:29,839 [INFO] AudacityFileReader.java: Reading of File Completed
+2019-03-19 20:54:31,096 [INFO] MP3Splitter.java: Start splitting of MP3 File C:\Users\MCSens\Subtitles\Audio\02_Text1_Dialog2.mp3
+2019-03-19 20:54:31,584 [INFO] MP3Splitter.java: Finished splitting of MP3 File into 50 Files
+2019-03-19 20:54:31,584 [INFO] CSVGenerator.java: Begin Generation of CSV File
+2019-03-19 20:54:31,605 [INFO] CSVGenerator.java: Finished Creation of CSV File

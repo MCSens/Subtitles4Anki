@@ -23,7 +23,6 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import svp.data.main.ConfigurationTable;
 import svp.data.main.SubtitleDataholder;
-import svp.data.main.SubtitleTableModel;
 import svp.data.main.SubtitleType;
 import svp.gui.controller.IConfigurationViewController;
 import svp.gui.controller.ISubtitleReviewViewController;

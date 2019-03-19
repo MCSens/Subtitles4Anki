@@ -2,7 +2,6 @@ package svp.test;
 
 import svp.data.filereader.AudacityFileReader;
 import svp.data.main.SubtitleDataholder;
-import svp.data.main.SubtitleTableModel;
 import svp.gui.main.TestCardLayout;
 
 public class SubtitleDataholderAsTableTest {

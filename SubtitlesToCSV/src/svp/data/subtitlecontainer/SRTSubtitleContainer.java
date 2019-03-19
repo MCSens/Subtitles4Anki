@@ -8,6 +8,14 @@ import org.slf4j.LoggerFactory;
 
 import svp.data.filereader.AudacityFileReader;
 
+/**
+ * 
+ * @author MCSens
+ *
+ * Represents a single Row of Data, one Flashcard if Subtitle Type SRT is selected.
+ * Contains Text for the languages, start/end of Audio Snippet.
+ * 
+ */
 public class SRTSubtitleContainer extends SubtitleContainer{
 	private static Logger log = (Logger) LoggerFactory.getLogger(SRTSubtitleContainer.class);
 	

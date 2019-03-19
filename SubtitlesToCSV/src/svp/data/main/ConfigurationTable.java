@@ -7,6 +7,17 @@ import org.slf4j.LoggerFactory;
 
 import svp.data.filereader.AudacityFileReader;
 
+/**
+ * Singleton that contains the Configurations.
+ * 
+ * This will be accessed by all other classes.
+ * It will be filled by the Controller ConfigurationViewController.
+ * 
+ * @see ConfigurationViewController
+ * 
+ * @author MCSens
+ *
+ */
 public class ConfigurationTable {
 	private static Logger log = (Logger) LoggerFactory.getLogger(ConfigurationTable.class);
 	

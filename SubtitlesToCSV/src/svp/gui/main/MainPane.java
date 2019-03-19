@@ -13,7 +13,6 @@ import javax.swing.event.TableModelListener;
 import svp.data.filereader.AudacityFileReader;
 import svp.data.main.ConfigurationTable;
 import svp.data.main.SubtitleDataholder;
-import svp.data.main.SubtitleTableModel;
 import svp.data.main.SubtitleType;
 import svp.gui.controller.IConfigurationViewController;
 import svp.gui.controller.IFileChooserViewController;
@@ -134,11 +133,6 @@ public class MainPane extends JPanel {
 			
 			SubtitleDataholder sdh = SubtitleDataholder.getSubtitleDataholder();
 			table.setModel(sdh);
-			
-			//This Version uses the TableModel with Object[][]
-			//SubtitleTableModel stm = SubtitleDataholder.getSubtitleDataholder().createTableModel();
-			//System.out.println(stm);
-			//table.setModel(stm);
 			
 			cardLayout.show(MainPane.this, SUBTITLE_REVIEW_VIEW);
 		}

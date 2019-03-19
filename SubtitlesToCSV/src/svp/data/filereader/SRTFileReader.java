@@ -7,9 +7,20 @@ import java.util.List;
 import java.util.Scanner;
 
 import svp.data.main.ConfigurationTable;
+import svp.data.main.SubtitleDataholder;
 import svp.data.subtitlecontainer.SRTSubtitleContainer;
 import svp.data.subtitlecontainer.SubtitleContainer;
 
+/**
+ * This file is responsible for reading the File for Subtitle Type Audacity has been selected.
+ * 
+ * <p>
+ * Each line of the file will be converted into Subtitle Containers.
+ * The created Subtitle Containers are stored in SubtitleDataholder.
+ * </p>
+ * @see SubtitleDataholder
+ * 
+ */
 public class SRTFileReader extends FileReader{
 
 	public SRTFileReader(String movieName, String pathToSubtitleFile){	
@@ -18,7 +29,6 @@ public class SRTFileReader extends FileReader{
 		 * Are there enough blank spaces?
 		 * 
 		 */
-		// TODO Auto-generated method stub
 		this.configurationTable = ConfigurationTable.getConfigurationTable();
 		this.movieName = movieName;
 		this.subtitles = new ArrayList();

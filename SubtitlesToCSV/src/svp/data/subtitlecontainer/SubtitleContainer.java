@@ -25,19 +25,11 @@ public abstract class SubtitleContainer {
 	public String getOutputFileName() {
 		return outputFileName;
 	}
+	
 	public void setOutputFileName(String outputFileName) {
 		this.outputFileName = outputFileName;
 	}
 
-
-	//public abstract void validityCheck();
-	
-	/*
-	public String getSplitCommand() {
-		return startTimestamp + " "+endTimestamp;
-	}
-	*/
-	
 	public ArrayList<SubtitleLiteral> getTranslations() {
 		return translations;
 	}

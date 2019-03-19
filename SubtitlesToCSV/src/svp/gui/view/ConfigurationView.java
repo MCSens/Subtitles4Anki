@@ -109,6 +109,7 @@ public class ConfigurationView extends AbstractView<IConfigurationViewController
 		
 		
 		JButton btnNext = new JButton("Next");
+		btnNext.setActionCommand("Next");
 		btnNext.setBackground(new Color(192, 192, 192));
 		//btnNewButton.setBackground(new Color(255, 255, 255));
 		
@@ -219,8 +220,10 @@ public class ConfigurationView extends AbstractView<IConfigurationViewController
 			System.out.println("Commas: "+isMergeCommasEnabled+", Audio: "+isMergeAudioEnabled+ ", Type: "+subtitleFileFormat);
 			 */
 			//No Logic in View ;) Handle that in Controller with getters of relevanted Items
+			System.out.println(e.getActionCommand());
 			getViewController().nextHasBeenClicked();
 		});
+		
 		buttonCancel.addActionListener((ActionEvent e) -> {
 			getViewController().cancelHasBeenClicked();
 		});

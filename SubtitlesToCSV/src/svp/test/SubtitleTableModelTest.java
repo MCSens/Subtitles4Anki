@@ -3,7 +3,6 @@ package svp.test;
 import svp.data.filereader.AudacityFileReader;
 import svp.data.main.ConfigurationTable;
 import svp.data.main.SubtitleDataholder;
-import svp.data.main.SubtitleTableModel;
 import svp.gui.main.TestCardLayout;
 import svp.util.CSVGenerator;
 import svp.util.MP3Splitter;
@@ -24,8 +23,8 @@ public class SubtitleTableModelTest {
 		//afr.mergeCommas();
 		
 		SubtitleDataholder sdh = SubtitleDataholder.getSubtitleDataholder();
-		SubtitleTableModel stm = sdh.createTableModel();
-		System.out.println(stm);
+		//SubtitleTableModel stm = sdh.createTableModel();
+		//System.out.println(stm);
 		new TestCardLayout();
 	}
 
