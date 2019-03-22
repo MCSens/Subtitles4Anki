@@ -18,3 +18,13 @@
 2019-03-19 20:54:31,584 [INFO] MP3Splitter.java: Finished splitting of MP3 File into 50 Files
 2019-03-19 20:54:31,584 [INFO] CSVGenerator.java: Begin Generation of CSV File
 2019-03-19 20:54:31,605 [INFO] CSVGenerator.java: Finished Creation of CSV File
+2019-03-19 21:10:01,515 [INFO] AudacityFileReader.java: Start Reading of File C:\Users\MCSens\Subtitles\SubtitleFiles\NPC2-Text1-Dialog2.txt
+2019-03-19 21:10:01,530 [INFO] AudacityFileReader.java: Reading of File Completed
+2019-03-19 21:10:22,552 [INFO] AudacityFileReader.java: Start Reading of File C:\Users\MCSens\Subtitles\SubtitleFiles\NPC2-Text1-Dialog2.txt
+2019-03-19 21:10:22,566 [INFO] AudacityFileReader.java: Reading of File Completed
+2019-03-19 21:10:24,981 [INFO] AudacityFileReader.java: Start Reading of File C:\Users\MCSens\Subtitles\SubtitleFiles\NPC2-Text1-Dialog2.txt
+2019-03-19 21:10:24,985 [INFO] AudacityFileReader.java: Reading of File Completed
+2019-03-19 21:10:26,884 [INFO] MP3Splitter.java: Start splitting of MP3 File C:\Users\MCSens\Subtitles\Audio\02_Text1_Dialog2.mp3
+2019-03-19 21:10:27,345 [INFO] MP3Splitter.java: Finished splitting of MP3 File into 50 Files
+2019-03-19 21:10:27,346 [INFO] CSVGenerator.java: Begin Generation of CSV File
+2019-03-19 21:10:27,350 [INFO] CSVGenerator.java: Finished Creation of CSV File

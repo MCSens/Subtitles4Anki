@@ -34,7 +34,7 @@ public class AudacityFileReader extends FileReader{
 		this.configurationTable = ConfigurationTable.getConfigurationTable();
 		this.subtitleDataholder = SubtitleDataholder.getSubtitleDataholder();
 		this.movieName = movieName;   //Alles in der Config Table, nicht mehr lokal hier drin!
-		this.subtitles = new ArrayList();
+		this.subtitles = new ArrayList<SubtitleContainer>();
 		this.pathToSubtitleFile = pathToSubtitleFile;
 		this.pathToAudioFile = pathToAudioFile;
 	}
@@ -55,7 +55,7 @@ public class AudacityFileReader extends FileReader{
 		this.languages = languages;
 		subtitleDataholder.setLanguages(languages);
 		
-		this.subtitles = new ArrayList();
+		this.subtitles = new ArrayList<SubtitleContainer>();
 	}
 	
 	public AudacityFileReader() {
@@ -72,7 +72,7 @@ public class AudacityFileReader extends FileReader{
 		this.pathToSubtitleFile = configurationTable.getPathToSubtitleFile();
 		this.pathToAudioFile = configurationTable.getPathToAudioFile();
 		this.languages = subtitleDataholder.getLanguages();
-		this.subtitles = new ArrayList();
+		this.subtitles = new ArrayList<SubtitleContainer>();
 	}
 	
 	/**
