@@ -1,7 +1,6 @@
 package svp.util;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
@@ -23,10 +22,7 @@ public class CSVGenerator {
 	    	ConfigurationTable configurationTable = ConfigurationTable.getConfigurationTable();
 	    	SubtitleDataholder subtitleDataholder = SubtitleDataholder.getSubtitleDataholder();
 	    	
-			String pathToAudioFile = configurationTable.getPathToAudioFile();
-			ArrayList<String[]> splitTimestamps = subtitleDataholder.getSplitTimestamps();
 			ArrayList<SubtitleContainer> subtitles = (ArrayList<SubtitleContainer>) subtitleDataholder.getSubtitles();
-			String[] languages = subtitleDataholder.getLanguages();
 			//String outputPath = configurationTable.getPathToOutputFolder();
 			String movieName = configurationTable.getMovieTitle();
 			
@@ -63,12 +59,7 @@ public class CSVGenerator {
 	//To be removed
 	public static void createCSV(FileReader fr, String outputPath) {
 	    try {
-	    	ConfigurationTable configurationTable = ConfigurationTable.getConfigurationTable();
-	    	SubtitleDataholder subtitleDataholder = SubtitleDataholder.getSubtitleDataholder();
-			String pathToAudioFile = configurationTable.getPathToAudioFile();
-			ArrayList<String[]> splitTimestamps = fr.getSplitTimestamps();
 			ArrayList<SubtitleContainer> subtitles = (ArrayList<SubtitleContainer>) fr.getSubtitles();
-			String[] languages = fr.getLanguages();
 			
 			//Open Writer to write into File
 	    	PrintWriter writer = new PrintWriter(new File(outputPath+"\\"+fr.getMovieName()+".csv")); 

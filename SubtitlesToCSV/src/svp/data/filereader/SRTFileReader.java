@@ -31,7 +31,7 @@ public class SRTFileReader extends FileReader{
 		 */
 		this.configurationTable = ConfigurationTable.getConfigurationTable();
 		this.movieName = movieName;
-		this.subtitles = new ArrayList();
+		this.subtitles = new ArrayList<SubtitleContainer>();
 		this.pathToSubtitleFile = pathToSubtitleFile;
 	}
 	
@@ -39,21 +39,12 @@ public class SRTFileReader extends FileReader{
 		Scanner sc;
 		try {
 			
-			//File.createNewFile();
-			//sc = new Scanner(new File("lib/mynums.txt"));
-			int id = -1;
-			String fromTimestamp;
-			String toTimestamp;
-			String text;
-			//sc = new Scanner(new File("lib/subtitles_BossAndMe_Episode2.txt"));
 			sc = new Scanner(new File(this.pathToSubtitleFile));
-			//sc.nextLine(); //Get rid of crazy initial value?
 			while(sc.hasNextLine()) {
 				String fileLine ="";
 				String fileFormattedLine = "";
 				do
 				{
-					//System.out.print("FileLine": );
 					fileLine = sc.nextLine();
 					fileFormattedLine += fileLine+"|";
 				
@@ -61,14 +52,11 @@ public class SRTFileReader extends FileReader{
 				System.out.println(fileFormattedLine);
 				
 				String[] splitted = fileFormattedLine.split("\\|");
-				//System.out.println(splitted[0]);
  				SRTSubtitleContainer ysh = new SRTSubtitleContainer(splitted);
-				//System.out.println(ysh);
 				subtitles.add(ysh);
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-			// TODO Auto-generated catch block
 		} finally {
 			for(SubtitleContainer ysh: subtitles) {
 				System.out.println(ysh);

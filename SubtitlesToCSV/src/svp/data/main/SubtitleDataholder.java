@@ -26,6 +26,11 @@ import svp.data.subtitlecontainer.SubtitleContainer;
  *
  */
 public class SubtitleDataholder extends AbstractTableModel{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7826338947655788905L;
+
 	private static Logger log = (Logger) LoggerFactory.getLogger(SubtitleDataholder.class);
 	
 	/*
@@ -59,6 +64,7 @@ public class SubtitleDataholder extends AbstractTableModel{
 	}
 
 	public void setLanguages(String[] languages) {
+		log.trace("Languages have been set to: "+Arrays.toString(languages));
 		this.languages = languages;
 		//this.columnNames = languages;
 	}
@@ -84,45 +90,49 @@ public class SubtitleDataholder extends AbstractTableModel{
 	public int getColumnCount() {
 		// TODO Auto-generated method stub
 		//The Table consists of ID + the languages
-		return languages.length+1;
+		//return languages.length+1;
+		return languages.length;
 	}
 
 	@Override
 	public int getRowCount() {
-		// TODO Auto-generated method stub
 		return subtitles.size();
 	}
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		// TODO Auto-generated method stub
 		SubtitleContainer sc = subtitles.get(rowIndex);
 		String result;
+		/*
+		 * ID not so relevant
 		if(columnIndex==0) {
 			result = ""+rowIndex;
 		}
 		else {
-			result = sc.getLiteralOnColumn(columnIndex-1);
-		}
+		*/	
+			result = sc.getLiteralOnColumn(columnIndex);
+		//}
 		return result;
 	}
 	
     @Override
     public void setValueAt(Object value, int row, int col) {
     	SubtitleContainer sc = subtitles.get(row);
-    	sc.setLiteralOnColumn((String) value, (col-1));
+    	sc.setLiteralOnColumn((String) value, (col));
     	subtitles.set(row, sc);
     }
     
     @Override
 	public boolean isCellEditable(int row, int col) { 
-		if(col==0)return false;
-		else return true; 
+		//if(col==0)return false;
+		//else 
+			return true; 
 	}
 	
     @Override
 	public String getColumnName(int column) {
-    	if(column==0)return "ID";
-    	else return languages[column-1];
+    	//if(column==0)return "ID";
+    	//else 
+    	return languages[column];
 	}
 }

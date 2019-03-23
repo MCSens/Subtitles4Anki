@@ -6,8 +6,6 @@ import org.slf4j.LoggerFactory;
 import net.sourceforge.pinyin4j.PinyinHelper;
 import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
 import net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
-import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
-import svp.data.filereader.AudacityFileReader;
 
 public class HanziPinyinConverter {
 	private static Logger log = (Logger) LoggerFactory.getLogger(HanziPinyinConverter.class);
@@ -25,8 +23,19 @@ public class HanziPinyinConverter {
 			String[] pinyinArray;
 			try {
 				pinyinArray = PinyinHelper.toHanyuPinyinStringArray(chineseCharacter, hpof);
-				result+=concatPinyinStringArray(pinyinArray);
-			} catch (BadHanyuPinyinOutputFormatCombination e) {
+				if(pinyinArray==null) {
+					result+=chineseCharacter;
+				}
+				else {
+					for(int j = 0; j<pinyinArray.length;j++) {
+						if(pinyinArray.length>1) {
+							log.warn("Found more than one Pinyin for character "+chineseCharacter);
+						}
+						result+=pinyinArray[j];
+						log.info(result);
+					}
+				}
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}

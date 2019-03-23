@@ -8,7 +8,8 @@ import java.util.Arrays;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import svp.data.filereader.AudacityFileReader;
+import svp.data.main.ConfigurationTable;
+import svp.util.HanziPinyinConverter;
 
 /**
  * 
@@ -31,7 +32,7 @@ public class AudacitySubtitleContainer extends SubtitleContainer{
 		}
 		else {
 			try {
-				this.ccId = Integer.valueOf(split[0].replaceAll("﻿", ""));
+				this.ccId = Integer.valueOf(split[0]);
 			}
 			catch(Exception e) {
 				this.ccId = -1;
@@ -39,16 +40,33 @@ public class AudacitySubtitleContainer extends SubtitleContainer{
 			
 			this.startTimestamp = convertStartTimestamp(split[0]);
 			
+			ConfigurationTable configurationTable = ConfigurationTable.getConfigurationTable();
+			boolean isGeneratePinyinEnabled = configurationTable.isGeneratePinyinEnabled();
 			//Split the Array to create the Literals
 			ArrayList<SubtitleLiteral> subtitles = new ArrayList<>();
+			String chineseSentence="";
 			for(int i = 0; i<languages.length;i++) {
 				if(languages[i]!="-" && languages[i] != "" && i<split.length+2) {
 					String language = languages[i];
 					String translation = split[i+2];
-					log.trace("Language: "+language +" Translation: "+translation);
-					SubtitleLiteral sl = new SubtitleLiteral(language, translation);
-					subtitles.add(sl);
-					log.trace("Added "+sl);
+					if(isGeneratePinyinEnabled&&language.equals("Hanzi")) {
+						chineseSentence=translation;
+						log.trace("Language: "+language +" Translation: "+translation);
+						SubtitleLiteral sl = new SubtitleLiteral(language, translation);
+						subtitles.add(sl);
+						log.trace("Added "+sl);
+					}
+					else if(isGeneratePinyinEnabled&&language.equals("Pinyin")) {
+						String chineseSentenceInPinyin = HanziPinyinConverter.convertSentence(chineseSentence);
+						SubtitleLiteral sl = new SubtitleLiteral("Pinyin", chineseSentenceInPinyin);
+						subtitles.add(sl);
+					}
+					else {
+						log.trace("Language: "+language +" Translation: "+translation);
+						SubtitleLiteral sl = new SubtitleLiteral(language, translation);
+						subtitles.add(sl);
+						log.trace("Added "+sl);
+					}
 				}
 			}
 			this.translations = subtitles;
@@ -85,7 +103,7 @@ public class AudacitySubtitleContainer extends SubtitleContainer{
 		if(tempTsp.length==2) {
 			int minutes = 0;
 			int second = Integer.valueOf(tempTsp[0]); //always two digit, get rid of milli seconds
-			int millisecond = Integer.valueOf(tempTsp[1]);
+			//int millisecond = Integer.valueOf(tempTsp[1]);
 			if(((double)second/(double)60) > 1) {
 				minutes = Integer.valueOf((second/60));
 				int seconds = second - minutes*60;
@@ -107,7 +125,7 @@ public class AudacitySubtitleContainer extends SubtitleContainer{
 		if(tempTsp.length==2) {
 			int minutes = 0;
 			int second = Integer.valueOf(tempTsp[0]); //always two digit, get rid of milli seconds
-			int millisecond = Integer.valueOf(tempTsp[1]);
+			//int millisecond = Integer.valueOf(tempTsp[1]);
 
 			if(((double)second/(double)60) > 1) {
 				minutes = Integer.valueOf((second/60));

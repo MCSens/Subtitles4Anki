@@ -6,28 +6,30 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
-
-import svp.data.main.SubtitleType;
 import svp.util.FileChooser;
 
 import javax.swing.JTextField;
 
 public class FileChooserViewPanelPlayground extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4242402252287603406L;
 	private JTextField txtSubtitleFile;
 	private JTextField txtAudioFile;
 	private JTextField txtOutputFolder;
+	@SuppressWarnings("unused")
 	private boolean isSubtitleFileSet;
+	@SuppressWarnings("unused")
 	private boolean isAudioFileSet;
+	@SuppressWarnings("unused")
 	private boolean isOutputPathSet;
 
 	public static void main(String[] args) {
@@ -56,7 +58,7 @@ public class FileChooserViewPanelPlayground extends JPanel {
 	public FileChooserViewPanelPlayground() {
 		setBackground(new Color(47, 79, 79));
 		//Themes ;)
-		Color buttonColor = new Color(255, 250, 205);
+		//Color buttonColor = new Color(255, 250, 205);
 		
 		  ///////////////////////////
 		 //		   Top Menu 	  //

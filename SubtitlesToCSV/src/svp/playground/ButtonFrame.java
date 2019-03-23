@@ -10,7 +10,11 @@ import svp.util.FileChooser;
 
 class ButtonFrame extends JFrame
 {
-  JButton bChange ; // reference to the button object
+  /**
+	 * 
+	 */
+	private static final long serialVersionUID = -8698998648344413597L;
+JButton bChange ; // reference to the button object
 
 	  // constructor for ButtonFrame
 	  ButtonFrame(String title) {

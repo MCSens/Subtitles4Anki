@@ -1,6 +1,5 @@
 package svp.util;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -22,7 +21,6 @@ public class MP3Splitter {
 		log.info("Start splitting of MP3 File "+pathToAudioFile);
 		
 		SubtitleDataholder subtitleDataholder = SubtitleDataholder.getSubtitleDataholder();
-		ArrayList<String[]> splitTimestamps = subtitleDataholder.getSplitTimestamps();
 		
 		ArrayList<SubtitleContainer> subtitles = (ArrayList<SubtitleContainer>) subtitleDataholder.getSubtitles();
 		Runtime rt = Runtime.getRuntime();
@@ -35,7 +33,7 @@ public class MP3Splitter {
 				String outputFileName = sc.getOutputFileName();
 				String splitCommand = "mp3splt "+pathToAudioFile+" "+start+" "+end+" -o S2C_"+movieTitle+"\\"+outputFileName;
 				log.debug(splitCommand);
-				Process pr = rt.exec(splitCommand);
+				rt.exec(splitCommand);
 			}
 			log.info("Finished splitting of MP3 File into "+subtitles.size()+" Files");
 		} catch (IOException e) {
@@ -43,10 +41,9 @@ public class MP3Splitter {
 		}
 	}
 	
-	//remove
+	//TODO remove
 	public static void splitMP3File(FileReader fr) {
 		String pathToAudioFile = fr.getPathToAudioFile();
-		ArrayList<String[]> splitTimestamps = fr.getSplitTimestamps();
 		ArrayList<SubtitleContainer> subtitles = (ArrayList<SubtitleContainer>) fr.getSubtitles();
 		Runtime rt = Runtime.getRuntime();
 		try {
@@ -56,11 +53,9 @@ public class MP3Splitter {
 				String start = sc.getStartTimestamp();
 				String end = sc.getEndTimestamp();
 				String outputFileName = sc.getOutputFileName();
-				Process pr = rt.exec("mp3splt "+pathToAudioFile+" "+start+" "+end+" -o S2C_"+movieName+"\\"+outputFileName);
+				rt.exec("mp3splt "+pathToAudioFile+" "+start+" "+end+" -o S2C_"+movieName+"\\"+outputFileName);
 			}
-			//pr = rt.exec("mp3splt \"C:\\Users\\MCSens\\Audio\\to_split_ep2.mp3\" 10.00 10.05");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

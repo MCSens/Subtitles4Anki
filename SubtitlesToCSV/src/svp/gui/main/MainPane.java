@@ -2,13 +2,14 @@ package svp.gui.main;
 
 import java.awt.CardLayout;
 
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
-import javax.swing.SwingUtilities;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import svp.data.filereader.AudacityFileReader;
 import svp.data.main.ConfigurationTable;
@@ -28,6 +29,11 @@ import svp.util.FileChooser;
 import svp.util.MP3Splitter;
 
 public class MainPane extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4598465785825258815L;
+	private static Logger log = (Logger) LoggerFactory.getLogger(MainPane.class);
     protected static final String CONFIGURATION_VIEW = "View.configuration";
     protected static final String FILE_CHOOSER_VIEW = "View.file";
     protected static final String SUBTITLE_REVIEW_VIEW = "View.review";
@@ -66,6 +72,9 @@ public class MainPane extends JPanel {
 			boolean isAudioEnabled = ((ConfigurationView)configurationView).getIsAudioEnabledCheckbox().isSelected();
 			config.setAudioEnabled(isAudioEnabled);
 			
+			boolean isGeneratePinyinEnabled = ((ConfigurationView)configurationView).getIsGeneratePinyinEnabledCheckbox().isSelected();
+			config.setGeneratePinyinEnabled(isGeneratePinyinEnabled);
+			
 			SubtitleType subtitleFileFormat = (SubtitleType) ((ConfigurationView)configurationView).getSubtitleFileFormatCombobox().getSelectedItem(); 
 			config.setSubtitleFormat(subtitleFileFormat);
 			
@@ -73,15 +82,29 @@ public class MainPane extends JPanel {
 			config.setMovieTitle(movieTitle);
 			
 			String languagesString = ((ConfigurationView)configurationView).getTxtSubtitleLanguages().getText();
-			String[] languages = {"English"}; //Default language
-			try {
-				languages = languagesString.split(";");
-			}catch(Exception e) {
-				System.out.println(e.getStackTrace());
+			System.out.println(languagesString);
+			if(languagesString.equals("")) {
+				JOptionPane.showMessageDialog(MainPane.this, "Please add a language!", "Error", JOptionPane.ERROR_MESSAGE);
 			}
-			subtitleDataholder.setLanguages(languages);
-			System.out.println("TRACE Commas: "+isMergeCommasEnabled+", Audio: "+isAudioEnabled+ ", Type: "+subtitleFileFormat);
-            cardLayout.show(MainPane.this, FILE_CHOOSER_VIEW);
+			else if(isGeneratePinyinEnabled&&!languagesString.contains("Hanzi")) {
+				JOptionPane.showMessageDialog(MainPane.this, "Please add Hanzi to languages if you want to generate Pinyin!", "Error", JOptionPane.ERROR_MESSAGE);
+			}
+			else {
+				if(isGeneratePinyinEnabled&&!languagesString.contains("Pinyin")) {
+					//languagesString.replaceAll("Hanzi;", "Hanzi;Pinyin");
+					languagesString+=";Pinyin";
+				}
+				String[] languages = null; //Default language
+				try {
+					languages = languagesString.split(";");
+				}catch(Exception e) {
+					JOptionPane.showMessageDialog(MainPane.this, "Please Check the selected languages", "Error", JOptionPane.ERROR_MESSAGE);
+					System.out.println(e.getStackTrace());
+				}
+				subtitleDataholder.setLanguages(languages);
+				log.debug("Commas: "+isMergeCommasEnabled+", Audio: "+isAudioEnabled+ ", Type: "+subtitleFileFormat+ ", Generate Pinyin: "+isGeneratePinyinEnabled);
+				cardLayout.show(MainPane.this, FILE_CHOOSER_VIEW);
+			}
         }
 
         @Override
@@ -117,6 +140,7 @@ public class MainPane extends JPanel {
 				afr.mergeCommas();
 				break;
 			case "SubRip":
+				//TODO
 				System.out.println("Youtube");
 				break;
 			}
@@ -127,7 +151,7 @@ public class MainPane extends JPanel {
 				   @Override
 				   public void tableChanged(TableModelEvent e) {
 				       // access the values of the model and save them to the file here
-					   System.out.println("Was geht hier ab?");
+					  //System.out.println("Was geht hier ab?");
 				   }
 				});
 			

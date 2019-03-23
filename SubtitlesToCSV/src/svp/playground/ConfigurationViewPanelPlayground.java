@@ -1,40 +1,30 @@
 package svp.playground;
 
 import javax.swing.JPanel;
-import java.awt.GridBagLayout;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 
 import java.awt.Color;
 import java.awt.EventQueue;
-import java.awt.GridBagConstraints;
-import javax.swing.JToggleButton;
-import javax.swing.border.EmptyBorder;
 
-import java.awt.Insets;
 import javax.swing.JLabel;
-import javax.swing.BoxLayout;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-import net.miginfocom.swing.MigLayout;
 import svp.data.main.SubtitleType;
 
-import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JInternalFrame;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Font;
 import javax.swing.JCheckBox;
-import java.awt.Component;
-import javax.swing.Box;
-import java.awt.SystemColor;
-import javax.swing.UIManager;
-import javax.swing.JTextField;
 
 public class ConfigurationViewPanelPlayground extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 980048565622184407L;
 	public static void main(String[] args) {
 		JFrame jf = new JFrame();
 		jf.setTitle("Subtitle to Anki");
@@ -59,10 +49,9 @@ public class ConfigurationViewPanelPlayground extends JPanel {
 	 */
 	public ConfigurationViewPanelPlayground() {
 		setBackground(new Color(47, 79, 79));
-		//Themes ;)
-		Color buttonColor = new Color(255, 250, 205); //Yellow/Gold
-		
-		JComboBox subtitleFileFormatCombobox = new JComboBox();
+		// TODO ;)
+		//Color buttonColor = new Color(255, 250, 205); //Yellow/Gold
+		JComboBox<SubtitleType> subtitleFileFormatCombobox = new JComboBox<SubtitleType>();
 		subtitleFileFormatCombobox.setBackground(new Color(192, 192, 192));
 		subtitleFileFormatCombobox.setModel(new DefaultComboBoxModel<>(SubtitleType.values()));
 		

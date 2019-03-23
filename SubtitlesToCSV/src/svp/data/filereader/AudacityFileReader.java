@@ -1,7 +1,6 @@
 package svp.data.filereader;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -12,9 +11,7 @@ import org.slf4j.LoggerFactory;
 import svp.data.main.ConfigurationTable;
 import svp.data.main.SubtitleDataholder;
 import svp.data.subtitlecontainer.AudacitySubtitleContainer;
-import svp.data.subtitlecontainer.SRTSubtitleContainer;
 import svp.data.subtitlecontainer.SubtitleContainer;
-import svp.test.NPCR2Text1Dialog1;
 
 /**
  * This file is responsible for reading the File for Subtitle Type Audacity has been selected.

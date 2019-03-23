@@ -6,8 +6,6 @@ import java.text.Normalizer.Form;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import svp.data.filereader.AudacityFileReader;
-
 /**
  * 
  * @author MCSens
@@ -42,7 +40,7 @@ public class SRTSubtitleContainer extends SubtitleContainer{
 				this.ccId = -1;
 			}
 			
-			String fromToTimestamp = split[1]; //in format 00:00:00.000 --> 00:00:00.000
+			//String fromToTimestamp = split[1]; //in format 00:00:00.000 --> 00:00:00.000
 			String[] timestamps = split[1].split("\\-->");
 			if(timestamps.length==2) {
 				this.startTimestamp = convertStartTimestamp(timestamps[0]);

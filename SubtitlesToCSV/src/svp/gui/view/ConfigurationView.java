@@ -2,11 +2,7 @@ package svp.gui.view;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
-import java.util.Random;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
@@ -14,31 +10,38 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
-
-import svp.data.main.ConfigurationTable;
 import svp.data.main.SubtitleType;
 import svp.gui.controller.IConfigurationViewController;
 
 
 public class ConfigurationView extends AbstractView<IConfigurationViewController> implements IConfigurationView {
 
-    private JComboBox subtitleFileFormatCombobox;
+	private static final long serialVersionUID = 6919806929256943883L;
+	private JComboBox<SubtitleType> subtitleFileFormatCombobox;
     private JCheckBox isAudioEnabledCheckbox;
     private JCheckBox isMergeCommasEnabledCheckbox;
+    private JCheckBox isGeneratePinyinEnabledCheckbox;
     private JTextField txtMovieTitle;
     private JTextArea txtSubtitleLanguages;
     
-    public JComboBox getSubtitleFileFormatCombobox() {
+    public JCheckBox getIsGeneratePinyinEnabledCheckbox() {
+		return isGeneratePinyinEnabledCheckbox;
+	}
+
+	public void setIsGeneratePinyinEnabledCheckbox(JCheckBox isGeneratePinyinEnabled) {
+		this.isGeneratePinyinEnabledCheckbox = isGeneratePinyinEnabled;
+	}
+
+    
+    public JComboBox<SubtitleType> getSubtitleFileFormatCombobox() {
 		return subtitleFileFormatCombobox;
 	}
 
-	public void setSubtitleFileFormatCombobox(JComboBox subtitleFileFormatCombobox) {
+	public void setSubtitleFileFormatCombobox(JComboBox<SubtitleType> subtitleFileFormatCombobox) {
 		this.subtitleFileFormatCombobox = subtitleFileFormatCombobox;
 	}
 
@@ -79,7 +82,7 @@ public class ConfigurationView extends AbstractView<IConfigurationViewController
     	setBackground(new Color(47, 79, 79));
 		//Themes ;)
 		
-		subtitleFileFormatCombobox = new JComboBox();
+		subtitleFileFormatCombobox = new JComboBox<SubtitleType>();
 		subtitleFileFormatCombobox.setBackground(new Color(192, 192, 192));
 		subtitleFileFormatCombobox.setModel(new DefaultComboBoxModel<>(SubtitleType.values()));
 		
@@ -109,7 +112,7 @@ public class ConfigurationView extends AbstractView<IConfigurationViewController
 		
 		
 		JButton btnNext = new JButton("Next");
-		btnNext.setActionCommand("Next");
+		btnNext.setActionCommand("Next"); //Idea: One Method to handle all Buttons, depending on ActionCommand?
 		btnNext.setBackground(new Color(192, 192, 192));
 		//btnNewButton.setBackground(new Color(255, 255, 255));
 		
@@ -121,7 +124,7 @@ public class ConfigurationView extends AbstractView<IConfigurationViewController
 		
 		txtSubtitleLanguages = new JTextArea();
 		txtSubtitleLanguages.setFont(new Font("Monospaced", Font.PLAIN, 11));
-		txtSubtitleLanguages.setText("Hanzi; Pinyin; English");
+		txtSubtitleLanguages.setText("Hanzi; English");
 		//txtSubtitleLanguages.setText("Seprate Language with ;\r\ne.g.: Hanzi; English\r\n");
 		txtSubtitleLanguages.setColumns(10);
 		
@@ -130,47 +133,62 @@ public class ConfigurationView extends AbstractView<IConfigurationViewController
 		
 		txtMovieTitle = new JTextField("Test");
 		txtMovieTitle.setColumns(10);
+		
+		isGeneratePinyinEnabledCheckbox = new JCheckBox("");
+		isGeneratePinyinEnabledCheckbox.setSelected(true);
+		isGeneratePinyinEnabledCheckbox.setBackground(new Color(47, 79, 79));
+		
+		JLabel lblConvertPinyin = new JLabel("Generate Column with Pinyin");
+		lblConvertPinyin.setForeground(new Color(255, 250, 205));
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addGroup(groupLayout.createSequentialGroup()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+							.addGroup(groupLayout.createSequentialGroup()
+								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+									.addComponent(lblGeneral)
+									.addGroup(groupLayout.createSequentialGroup()
+										.addGap(10)
+										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+											.addGroup(groupLayout.createSequentialGroup()
+												.addComponent(lblSelectSubtitleFile, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE)
+												.addGap(96)
+												.addComponent(subtitleFileFormatCombobox, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE))
+											.addGroup(groupLayout.createSequentialGroup()
+												.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+													.addComponent(lblUseAudio, GroupLayout.PREFERRED_SIZE, 164, GroupLayout.PREFERRED_SIZE)
+													.addComponent(lblMergeCommasEnabled, GroupLayout.PREFERRED_SIZE, 198, GroupLayout.PREFERRED_SIZE))
+												.addGap(126)
+												.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+													.addComponent(isMergeCommasEnabledCheckbox, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+													.addComponent(isAudioEnabledCheckbox)))))
+									.addGroup(groupLayout.createSequentialGroup()
+										.addGap(10)
+										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+											.addGroup(groupLayout.createSequentialGroup()
+												.addComponent(lblConvertPinyin, GroupLayout.PREFERRED_SIZE, 198, GroupLayout.PREFERRED_SIZE)
+												.addGap(126)
+												.addComponent(isGeneratePinyinEnabledCheckbox, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE))
+											.addGroup(groupLayout.createSequentialGroup()
+												.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+													.addComponent(lblMovieTitle, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE)
+													.addComponent(lblLanguages, GroupLayout.PREFERRED_SIZE, 173, GroupLayout.PREFERRED_SIZE))
+												.addGap(34)
+												.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+													.addComponent(txtSubtitleLanguages, GroupLayout.PREFERRED_SIZE, 270, GroupLayout.PREFERRED_SIZE)
+													.addComponent(txtMovieTitle, 270, 270, 270))))))
+								.addContainerGap(53, Short.MAX_VALUE))
+							.addGroup(groupLayout.createSequentialGroup()
+								.addComponent(lblCleanup, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
+								.addContainerGap(433, Short.MAX_VALUE)))
+						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
 							.addComponent(btnNext, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(buttonCancel, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap())
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblCleanup, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblGeneral)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(10)
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addGroup(groupLayout.createSequentialGroup()
-											.addComponent(lblSelectSubtitleFile, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE)
-											.addGap(96)
-											.addComponent(subtitleFileFormatCombobox, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE))
-										.addComponent(lblUseAudio, GroupLayout.PREFERRED_SIZE, 164, GroupLayout.PREFERRED_SIZE)))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(10)
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addGroup(groupLayout.createSequentialGroup()
-											.addComponent(lblMergeCommasEnabled, GroupLayout.PREFERRED_SIZE, 198, GroupLayout.PREFERRED_SIZE)
-											.addGap(131)
-											.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-												.addComponent(isAudioEnabledCheckbox)
-												.addComponent(isMergeCommasEnabledCheckbox, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)))
-										.addGroup(groupLayout.createSequentialGroup()
-											.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-												.addComponent(lblLanguages, GroupLayout.PREFERRED_SIZE, 173, GroupLayout.PREFERRED_SIZE)
-												.addComponent(lblMovieTitle, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE))
-											.addGap(33)
-											.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-												.addComponent(txtMovieTitle)
-												.addComponent(txtSubtitleLanguages, GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE))))))
-							.addContainerGap(56, Short.MAX_VALUE))))
+							.addContainerGap())))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -184,23 +202,31 @@ public class ConfigurationView extends AbstractView<IConfigurationViewController
 						.addComponent(subtitleFileFormatCombobox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(lblUseAudio, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
-						.addComponent(isAudioEnabledCheckbox))
-					.addGap(18)
-					.addComponent(lblCleanup, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
+						.addComponent(isAudioEnabledCheckbox)
+						.addComponent(lblUseAudio, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblMergeCommasEnabled, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
+						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+							.addComponent(lblMergeCommasEnabled, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(lblCleanup, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblMovieTitle, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
+								.addComponent(txtMovieTitle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 						.addComponent(isMergeCommasEnabledCheckbox, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblMovieTitle, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtMovieTitle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblLanguages, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtSubtitleLanguages, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE))
-					.addGap(47)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(13)
+							.addComponent(lblLanguages, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(18)
+							.addComponent(txtSubtitleLanguages, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)))
+					.addGap(11)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblConvertPinyin, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
+						.addComponent(isGeneratePinyinEnabledCheckbox, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(buttonCancel)
 						.addComponent(btnNext))
@@ -220,6 +246,7 @@ public class ConfigurationView extends AbstractView<IConfigurationViewController
 			System.out.println("Commas: "+isMergeCommasEnabled+", Audio: "+isMergeAudioEnabled+ ", Type: "+subtitleFileFormat);
 			 */
 			//No Logic in View ;) Handle that in Controller with getters of relevanted Items
+			
 			System.out.println(e.getActionCommand());
 			getViewController().nextHasBeenClicked();
 		});

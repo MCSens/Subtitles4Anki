@@ -100,10 +100,11 @@ public abstract class SubtitleContainer {
 	}
 	
 	public String setLiteralOnColumn(String value, int column) {
+		log.trace("Set Literal to value"+value+" on column "+column);
 		SubtitleLiteral sc = translations.get(column);
 		String before = sc.toString();
 		sc.setText(value);
-		log.trace("Changed SubtitleLiteral from ||"+before+" to "+sc.toString());
+		log.trace("Changed SubtitleLiteral from "+before+" to "+sc.toString());
 		return translations.get(column).getText();
 	}
 }

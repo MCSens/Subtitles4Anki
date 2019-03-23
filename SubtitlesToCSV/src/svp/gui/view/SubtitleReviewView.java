@@ -2,35 +2,24 @@ package svp.gui.view;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
-import java.util.Random;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import svp.data.main.ConfigurationTable;
-import svp.data.main.SubtitleDataholder;
-import svp.data.main.SubtitleType;
-import svp.gui.controller.IConfigurationViewController;
 import svp.gui.controller.ISubtitleReviewViewController;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 
 
 public class SubtitleReviewView extends AbstractView<ISubtitleReviewViewController> implements ISubtitleReviewView {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7765690033116179248L;
 	private JTable table;
 
 	
@@ -48,7 +37,7 @@ public class SubtitleReviewView extends AbstractView<ISubtitleReviewViewControll
 		//This will contain a JTable to check the created CSV File
     	setBackground(new Color(47, 79, 79));
 		//Themes ;)
-		Color buttonColor = new Color(255, 250, 205);
+		//Color buttonColor = new Color(255, 250, 205);
 		
 		  ///////////////////////////
 		 //		   Top Menu 	  //
@@ -56,9 +45,8 @@ public class SubtitleReviewView extends AbstractView<ISubtitleReviewViewControll
 		
 		//------ Subtitle ------//
 		JLabel lblSubtitleReview = new JLabel("Subtitle Review View");
-		lblSubtitleReview.setForeground(new Color(128, 128, 0));
 		lblSubtitleReview.setFont(new Font("Tahoma", Font.BOLD, 13));
-		
+		lblSubtitleReview.setForeground(new Color(128, 128, 0));
 		
 		  ///////////////////////////
 		 //			Button Bar	  //
@@ -83,12 +71,16 @@ public class SubtitleReviewView extends AbstractView<ISubtitleReviewViewControll
         });
 		
 		JScrollPane scrollPane = new JScrollPane();
-		//SubtitleTableModel stm = SubtitleDataholder.getSubtitleDataholder().createTableModel();
-		//table.setModel(stm);
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
-		table.setFont(new Font("SimHei", Font.PLAIN, 15));
+		table.setRowHeight(30);
+		//Font f = table.getFont().deriveFont(40.0f);
+		table.setFont(table.getFont().deriveFont(15.0f));
+		//System.out.println(table.getFont());
+		//table.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		//table.setFont(new Font("SimHei", Font.PLAIN, 15));
+		//table.setFont(pinyinFont.deriveFont(16.0f));
 		
 		  ///////////////////////////
 		 //		Layout Setting	  //
@@ -99,15 +91,14 @@ public class SubtitleReviewView extends AbstractView<ISubtitleReviewViewControll
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblSubtitleReview)
-						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
+						.addComponent(scrollPane, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE)
 						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createSequentialGroup()
-								.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.UNRELATED))
+							.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(btnNext, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnCancel, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)))
+							.addGap(10)
+							.addComponent(btnCancel, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE))
+						.addComponent(lblSubtitleReview))
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
@@ -119,9 +110,9 @@ public class SubtitleReviewView extends AbstractView<ISubtitleReviewViewControll
 					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 315, GroupLayout.PREFERRED_SIZE)
 					.addGap(8)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnCancel)
 						.addComponent(btnNext)
-						.addComponent(btnBack)
-						.addComponent(btnCancel))
+						.addComponent(btnBack))
 					.addContainerGap())
 		);
 		

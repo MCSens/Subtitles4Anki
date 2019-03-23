@@ -2,28 +2,23 @@ package svp.gui.view;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Random;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
-
-import svp.gui.controller.IConfigurationViewController;
 import svp.gui.controller.IFileChooserViewController;
-import svp.util.FileChooser;
 
 
 public class FileChooserView extends AbstractView<IFileChooserViewController> implements IFileChooserView {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6928649472622061226L;
 	private JTextField txtSubtitleFile;
 	private JTextField txtAudioFile;
 	private JTextField txtOutputFolder;
@@ -91,7 +86,7 @@ public class FileChooserView extends AbstractView<IFileChooserViewController> im
     	super(controller);
 		setBackground(new Color(47, 79, 79));
 		//Themes ;)
-		Color buttonColor = new Color(255, 250, 205);
+		//Color buttonColor = new Color(255, 250, 205);
 		
 		  ///////////////////////////
 		 //		   Top Menu 	  //
@@ -101,7 +96,7 @@ public class FileChooserView extends AbstractView<IFileChooserViewController> im
 		JLabel lblSubtitleFile = new JLabel("Subtitle File");
 		lblSubtitleFile.setForeground(new Color(128, 128, 0));
 		lblSubtitleFile.setFont(new Font("Tahoma", Font.BOLD, 13));
-		txtSubtitleFile = new JTextField("C:\\Users\\MCSens\\Subtitles\\SubtitleFiles\\NPC2-Text1-Dialog2.txt");
+		txtSubtitleFile = new JTextField("C:\\Users\\MCSens\\Subtitles\\SubtitleFiles\\NPC2-Text1-Dialog2-nopinyin.txt");
 		txtSubtitleFile.setColumns(10);
 		JButton btnSubtitleFile = new JButton("Select");
 		btnSubtitleFile.setBackground(Color.LIGHT_GRAY);

@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import svp.data.filereader.AudacityFileReader;
-
 /**
  * Singleton that contains the Configurations.
  * 
@@ -25,12 +23,22 @@ public class ConfigurationTable {
 	private SubtitleType subtitleFormat;
 	private boolean isAudioEnabled;
 	private boolean isMergeCommasEnabled;
+	private boolean isGeneratePinyinEnabled;
 	private String movieTitle;
 	private String pathToSubtitleFile;
 	private String pathToAudioFile;
 	private String pathToOutputFolder;
 	
 	
+	public boolean isGeneratePinyinEnabled() {
+		return isGeneratePinyinEnabled;
+	}
+
+	public void setGeneratePinyinEnabled(boolean isGeneratePinyinEnabled) {
+		log.trace("Generate Pinyn Enabled has been set to "+isGeneratePinyinEnabled);
+		this.isGeneratePinyinEnabled = isGeneratePinyinEnabled;
+	}
+
 	private ConfigurationTable() {
 		//Do nothing, enforce usages of getInstance Method
 	}

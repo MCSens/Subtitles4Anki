@@ -8,7 +8,8 @@ import svp.gui.controller.IViewController;
 
 public abstract class AbstractView<C extends IViewController> extends JPanel implements IView<C> {
 
-    private C viewController;
+	private static final long serialVersionUID = 7662497129016160934L;
+	private C viewController;
 
     public AbstractView(C viewController) {
         this.viewController = viewController;

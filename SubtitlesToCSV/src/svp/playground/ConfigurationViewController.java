@@ -1,15 +1,14 @@
-package svp.gui.controller;
+package svp.playground;
 
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JOptionPane;
 
 import svp.data.main.ConfigurationTable;
 import svp.data.main.SubtitleDataholder;
 import svp.data.main.SubtitleType;
-import svp.gui.main.MainPane;
+import svp.gui.controller.IConfigurationViewController;
 import svp.gui.view.ConfigurationView;
 
 public class ConfigurationViewController implements ActionListener, IConfigurationViewController{
@@ -58,11 +57,11 @@ public class ConfigurationViewController implements ActionListener, IConfigurati
 		}
 		subtitleDataholder.setLanguages(languages);
 		System.out.println("TRACE Commas: "+isMergeCommasEnabled+", Audio: "+isAudioEnabled+ ", Type: "+subtitleFileFormat);
-        cardLayout.show(MainPane.this, FILE_CHOOSER_VIEW);
+        //cardLayout.show(MainPane.this, FILE_CHOOSER_VIEW);
     }
 
     @Override
     public void cancelHasBeenClicked() {
-        JOptionPane.showMessageDialog(MainPane.this, "Do you want to cancel?", "Error", JOptionPane.ERROR_MESSAGE);
+       // JOptionPane.showMessageDialog(MainPane.this, "Do you want to cancel?", "Error", JOptionPane.ERROR_MESSAGE);
     }
 }
