@@ -30,7 +30,8 @@ public class CSVGenerator {
 			//Open Writer to write into File
 			String csvFileName = outputPath+"\\"+movieName+".csv";
 			log.trace("Full CSV Name: "+csvFileName);
-	    	PrintWriter writer = new PrintWriter(new File(csvFileName)); 
+			File csv = new File(csvFileName);
+	    	PrintWriter writer = new PrintWriter(csv); 
 	    	
 			  ////////////////////////////////
 			 //			Write Content	   //

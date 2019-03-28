@@ -124,7 +124,7 @@ public class ConfigurationView extends AbstractView<IConfigurationViewController
 		
 		txtSubtitleLanguages = new JTextArea();
 		txtSubtitleLanguages.setFont(new Font("Monospaced", Font.PLAIN, 11));
-		txtSubtitleLanguages.setText("Hanzi; English");
+		txtSubtitleLanguages.setText("Hanzi;English");
 		//txtSubtitleLanguages.setText("Seprate Language with ;\r\ne.g.: Hanzi; English\r\n");
 		txtSubtitleLanguages.setColumns(10);
 		

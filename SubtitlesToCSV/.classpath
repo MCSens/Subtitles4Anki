@@ -13,5 +13,8 @@
 	<classpathentry exported="true" kind="lib" path="C:/Users/MCSens/git/S2Anki/SubtitlesToCSV/lib/slf4j-api-1.7.25.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/MCSens/git/S2Anki/SubtitlesToCSV/lib/pinyin4j-2.5.0.jar" sourcepath="C:/Development/Libraries/pinyin4j-2.5.0/src"/>
+	<classpathentry kind="lib" path="lib/vget-1.2.6.jar"/>
+	<classpathentry kind="lib" path="lib/wget-1.4.9.jar"/>
+	<classpathentry kind="lib" path="lib/commons-lang3-3.8.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

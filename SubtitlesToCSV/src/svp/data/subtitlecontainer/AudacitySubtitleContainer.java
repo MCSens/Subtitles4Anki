@@ -73,7 +73,6 @@ public class AudacitySubtitleContainer extends SubtitleContainer{
 			this.text = Normalizer.normalize(this.text, Form.NFD);
 			this.text = split[2];
 			this.ccId = Integer.valueOf(split[split.length-1]);
-			this.valid = true;
 
 			  ////////////////////////////////
 			 //			Clean Up 		   //
@@ -86,15 +85,6 @@ public class AudacitySubtitleContainer extends SubtitleContainer{
 		}
 	}
 	
-	public AudacitySubtitleContainer(int ccId, String startTimestamp, String endTimestamp, String text) {
-		super();
-		this.ccId = ccId;
-		this.startTimestamp = startTimestamp;
-		this.endTimestamp = endTimestamp;
-		this.text = text;
-		this.valid = true;
-	}
-
 	public String convertStartTimestamp(String timestamp) {
 		log.trace("Got Timestamp: "+timestamp);
 		timestamp = timestamp.replaceAll("\\s+","");
@@ -103,14 +93,14 @@ public class AudacitySubtitleContainer extends SubtitleContainer{
 		if(tempTsp.length==2) {
 			int minutes = 0;
 			int second = Integer.valueOf(tempTsp[0]); //always two digit, get rid of milli seconds
-			//int millisecond = Integer.valueOf(tempTsp[1]);
+			int millisecond = Integer.valueOf(tempTsp[1].substring(0, 2));
 			if(((double)second/(double)60) > 1) {
 				minutes = Integer.valueOf((second/60));
 				int seconds = second - minutes*60;
-				result = minutes+"."+seconds;				
+				result = minutes+"."+seconds+"."+millisecond;				
 			}
 			else {
-				result = "00."+(second);		
+				result = "00."+(second)+"."+millisecond;		
 			}
 		}
 		log.trace("Result Timestamp: "+result);
@@ -125,7 +115,7 @@ public class AudacitySubtitleContainer extends SubtitleContainer{
 		if(tempTsp.length==2) {
 			int minutes = 0;
 			int second = Integer.valueOf(tempTsp[0]); //always two digit, get rid of milli seconds
-			//int millisecond = Integer.valueOf(tempTsp[1]);
+			int millisecond = Integer.valueOf(tempTsp[1].substring(0, 2));
 
 			if(((double)second/(double)60) > 1) {
 				minutes = Integer.valueOf((second/60));
@@ -137,10 +127,10 @@ public class AudacitySubtitleContainer extends SubtitleContainer{
 				else {
 					seconds +=1;
 				}
-				result = minutes+"."+seconds;				
+				result = minutes+"."+seconds+"."+millisecond;				
 			}
 			else {
-				result = "00."+(second+1);		
+				result = "00."+(second+1)+"."+millisecond;		
 			}
 		}
 		log.trace("Result Timestamp: "+result);

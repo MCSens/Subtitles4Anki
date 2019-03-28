@@ -18,6 +18,7 @@ public class MP3Splitter {
 		
 		ConfigurationTable configurationTable = ConfigurationTable.getConfigurationTable();
 		String pathToAudioFile = configurationTable.getPathToAudioFile();
+	
 		log.info("Start splitting of MP3 File "+pathToAudioFile);
 		
 		SubtitleDataholder subtitleDataholder = SubtitleDataholder.getSubtitleDataholder();
@@ -31,7 +32,7 @@ public class MP3Splitter {
 				String start = sc.getStartTimestamp();
 				String end = sc.getEndTimestamp();
 				String outputFileName = sc.getOutputFileName();
-				String splitCommand = "mp3splt "+pathToAudioFile+" "+start+" "+end+" -o S2C_"+movieTitle+"\\"+outputFileName;
+				String splitCommand = "mp3splt \""+pathToAudioFile+"\" "+start+" "+end+" -o S2C_"+movieTitle+"\\"+outputFileName;
 				log.debug(splitCommand);
 				rt.exec(splitCommand);
 			}

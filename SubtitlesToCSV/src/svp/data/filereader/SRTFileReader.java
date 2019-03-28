@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import svp.data.main.ConfigurationTable;
 import svp.data.main.SubtitleDataholder;
 import svp.data.subtitlecontainer.SRTSubtitleContainer;
@@ -22,7 +25,8 @@ import svp.data.subtitlecontainer.SubtitleContainer;
  * 
  */
 public class SRTFileReader extends FileReader{
-
+	private static Logger log = (Logger) LoggerFactory.getLogger(SRTFileReader.class);
+	
 	public SRTFileReader(String movieName, String pathToSubtitleFile){	
 		/*
 		 * I should somehwat validate the file
@@ -35,9 +39,29 @@ public class SRTFileReader extends FileReader{
 		this.pathToSubtitleFile = pathToSubtitleFile;
 	}
 	
+	public SRTFileReader(String movieName, String pathToSubtitleFile, String pathToAudioFile, String[] languages){	
+		// TODO Auto-generated method stub
+		this.configurationTable = ConfigurationTable.getConfigurationTable();
+		this.subtitleDataholder = SubtitleDataholder.getSubtitleDataholder();
+		this.movieName = movieName;
+		configurationTable.setMovieTitle(movieName);
+		
+		this.pathToSubtitleFile = pathToSubtitleFile;
+		configurationTable.setPathToSubtitleFile(pathToSubtitleFile);
+		
+		this.pathToAudioFile = pathToAudioFile;
+		configurationTable.setPathToAudioFile(pathToAudioFile);
+		
+		this.languages = languages;
+		subtitleDataholder.setLanguages(languages);
+		
+		this.subtitles = new ArrayList<SubtitleContainer>();
+	}
+	
 	public void readFile() {
 		Scanner sc;
 		try {
+			log.info("Start Reading of File "+this.pathToSubtitleFile);
 			
 			sc = new Scanner(new File(this.pathToSubtitleFile));
 			while(sc.hasNextLine()) {
@@ -49,17 +73,26 @@ public class SRTFileReader extends FileReader{
 					fileFormattedLine += fileLine+"|";
 				
 				}while(!fileLine.equals("") && sc.hasNextLine());
-				System.out.println(fileFormattedLine);
+				log.trace(fileFormattedLine);
 				
 				String[] splitted = fileFormattedLine.split("\\|");
- 				SRTSubtitleContainer ysh = new SRTSubtitleContainer(splitted);
-				subtitles.add(ysh);
+ 				SRTSubtitleContainer ssc = new SRTSubtitleContainer(this.movieName, splitted, this.languages);
+ 				if(ssc.getValid()) {
+ 					this.subtitleDataholder.addSubtitleContainer(ssc);
+ 				}
+ 				else {
+ 					log.warn("Issue found with "+ssc+" and thus is being skipped");
+ 				}
+ 				
+ 				//subtitles.add(ssc);
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} finally {
-			for(SubtitleContainer ysh: subtitles) {
-				System.out.println(ysh);
+			log.info("Finished Reading of File "+this.pathToSubtitleFile);
+			log.trace("Added following SubtitleContainers: ");
+			for(SubtitleContainer ssc: subtitles) {
+				log.trace(ssc.toString());
 			}
 		}
 	}

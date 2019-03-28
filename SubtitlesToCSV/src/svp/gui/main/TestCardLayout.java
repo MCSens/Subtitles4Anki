@@ -23,8 +23,7 @@ public class TestCardLayout {
                 } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
                     ex.printStackTrace();
                 }
-
-                JFrame frame = new JFrame("Testing");
+                JFrame frame = new JFrame("Subtitles 2 Anki");
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.add(new MainPane());
                 frame.pack();

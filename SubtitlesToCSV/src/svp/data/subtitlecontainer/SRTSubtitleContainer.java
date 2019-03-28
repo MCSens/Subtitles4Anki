@@ -2,6 +2,7 @@ package svp.data.subtitlecontainer;
 
 import java.text.Normalizer;
 import java.text.Normalizer.Form;
+import java.util.ArrayList;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,10 +27,10 @@ public class SRTSubtitleContainer extends SubtitleContainer{
 		this.valid = true;
 	}
 	
-	public SRTSubtitleContainer(String[] split) {
+	public SRTSubtitleContainer(String movieName, String[] split, String[] languages) {
 		// TODO Auto-generated constructor stub
 		if(split.length<2) {
-			log.warn("Array "+split.toString()+"contains lett than 2 two rows and thus is not correct");
+			log.warn("Array "+split.toString()+"contains less than 2 two rows and thus is not correct");
 			this.valid = false;
 		}
 		else if(split.length >= 3) {
@@ -46,24 +47,40 @@ public class SRTSubtitleContainer extends SubtitleContainer{
 				this.startTimestamp = convertStartTimestamp(timestamps[0]);
 				this.endTimestamp = convertEndTimestamp(timestamps[1]);
 			}
+			
+			ArrayList<SubtitleLiteral> subtitles = new ArrayList<>();
+			String text="";
 			if(split.length==3) {
-				this.text = split[2];
+				text = split[2];
 			}
 			else {
 				for(int i = 2; i<split.length;i++) {
-					this.text+=split[i]+"\n";
+					text+=split[i]+"\n";
 				}
+				
 			}
-			this.text = Normalizer.normalize(this.text, Form.NFD);
-			this.text = this.text.replaceAll("<i>", "");
-			this.text = this.text.replaceAll("</i>", "");
+			//TODO
+			////////////////////////////////
+			//	   Clean Up, Temporary!	   //
+			////////////////////////////////
+			text = Normalizer.normalize(text, Form.NFD);
+			text = text.replaceAll("<i>", "");
+			text = text.replaceAll("</i>", "");
+			
+			SubtitleLiteral sl = new SubtitleLiteral("Language", text);
+			log.info(sl.toString());
+			subtitles.add(sl);
+			this.translations = subtitles;
+			
+			this.outputFileName = movieName+"_"+ccId+"_"+this.startTimestamp.replace(".", "")+"_"+this.endTimestamp.replace(".", "");
 			this.valid = true;
+			
 		}
 	}
 	
 
 	public String convertStartTimestamp(String timestamp) {
-		System.out.println("Got Timestamp: "+timestamp);
+		log.trace("Got Timestamp: "+timestamp);
 		timestamp = timestamp.replaceAll("\\s+","");
 		String[] tempTsp = timestamp.split("\\:");
 		String result="";
@@ -80,12 +97,12 @@ public class SRTSubtitleContainer extends SubtitleContainer{
 				result = minutes+"."+(second);		
 			}
 		}
-		System.out.println("Result Timestamp: "+result);
+		log.trace("Result Timestamp: "+result);
 		return result;
 	}
 	
 	public String convertEndTimestamp(String timestamp) {
-		System.out.println("Got Timestamp: "+timestamp);
+		log.trace("Got Timestamp: "+timestamp);
 		timestamp = timestamp.replaceAll("\\s+","");
 		String[] tempTsp = timestamp.split("\\:");
 		String result="";
@@ -102,7 +119,7 @@ public class SRTSubtitleContainer extends SubtitleContainer{
 				result = minutes+"."+(second+1);		
 			}
 		}
-		System.out.println("Result Timestamp: "+result);
+		log.trace("Result Timestamp: "+result);
 		return result;
 	}
 }
