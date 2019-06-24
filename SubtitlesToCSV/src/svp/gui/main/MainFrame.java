@@ -7,14 +7,14 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 import svp.data.main.ConfigurationTable;
 
-public class TestCardLayout {
+public class MainFrame {
 	ConfigurationTable config;
 
     public static void main(String[] args) {
-        new TestCardLayout();
+        new MainFrame();
     }
 
-    public TestCardLayout() {
+    public MainFrame() {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -25,7 +25,7 @@ public class TestCardLayout {
                 }
                 JFrame frame = new JFrame("Subtitles 2 Anki");
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                frame.add(new MainPane());
+                frame.add(new MainCardLayout());
                 frame.pack();
                 frame.setLocationRelativeTo(null);
                 frame.setVisible(true);

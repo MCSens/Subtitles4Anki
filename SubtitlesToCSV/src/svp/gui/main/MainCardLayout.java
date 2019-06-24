@@ -1,10 +1,14 @@
 package svp.gui.main;
 
 import java.awt.CardLayout;
+import java.awt.EventQueue;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 
@@ -28,12 +32,12 @@ import svp.util.CSVGenerator;
 import svp.util.FileChooser;
 import svp.util.MP3Splitter;
 
-public class MainPane extends JPanel {
+public class MainCardLayout extends JPanel {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 4598465785825258815L;
-	private static Logger log = (Logger) LoggerFactory.getLogger(MainPane.class);
+	private static Logger log = (Logger) LoggerFactory.getLogger(MainCardLayout.class);
     protected static final String CONFIGURATION_VIEW = "View.configuration";
     protected static final String FILE_CHOOSER_VIEW = "View.file";
     protected static final String SUBTITLE_REVIEW_VIEW = "View.review";
@@ -44,8 +48,31 @@ public class MainPane extends JPanel {
     private IFileChooserView fileChooserView;
     private ISubtitleReviewView subtitleReviewView;
 
-    public MainPane() {
-        cardLayout = new CardLayout();
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+                    ex.printStackTrace();
+                }
+                JFrame frame = new JFrame("Subtitles 2 Anki");
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.add(new MainCardLayout());
+                frame.pack();
+                frame.setLocationRelativeTo(null);
+                frame.setVisible(true);
+            }
+        });
+    }
+    
+    public MainCardLayout() {
+    	/*
+    	 *  
+    	 *  
+    	 */
+    	cardLayout = new CardLayout();
         setLayout(cardLayout);
 
         // This could be established via a factory or builder pattern
@@ -82,12 +109,12 @@ public class MainPane extends JPanel {
 			config.setMovieTitle(movieTitle);
 			
 			String languagesString = ((ConfigurationView)configurationView).getTxtSubtitleLanguages().getText();
-			System.out.println(languagesString);
+			log.trace("Selected language: "+languagesString);
 			if(languagesString.equals("")) {
-				JOptionPane.showMessageDialog(MainPane.this, "Please add a language!", "Error", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(MainCardLayout.this, "Please add a language!", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 			else if(isGeneratePinyinEnabled&&!languagesString.contains("Hanzi")) {
-				JOptionPane.showMessageDialog(MainPane.this, "Please add Hanzi to languages if you want to generate Pinyin!", "Error", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(MainCardLayout.this, "Please add Hanzi to languages if you want to generate Pinyin!", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 			else {
 				if(isGeneratePinyinEnabled&&!languagesString.contains("Pinyin")) {
@@ -98,18 +125,18 @@ public class MainPane extends JPanel {
 				try {
 					languages = languagesString.split(";");
 				}catch(Exception e) {
-					JOptionPane.showMessageDialog(MainPane.this, "Please Check the selected languages", "Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(MainCardLayout.this, "Please Check the selected languages", "Error", JOptionPane.ERROR_MESSAGE);
 					System.out.println(e.getStackTrace());
 				}
 				subtitleDataholder.setLanguages(languages);
 				log.debug("Commas: "+isMergeCommasEnabled+", Audio: "+isAudioEnabled+ ", Type: "+subtitleFileFormat+ ", Generate Pinyin: "+isGeneratePinyinEnabled);
-				cardLayout.show(MainPane.this, FILE_CHOOSER_VIEW);
+				cardLayout.show(MainCardLayout.this, FILE_CHOOSER_VIEW);
 			}
         }
 
         @Override
         public void cancelHasBeenClicked() {
-            JOptionPane.showMessageDialog(MainPane.this, "Do you want to cancel?", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(MainCardLayout.this, "Do you want to cancel?", "Error", JOptionPane.ERROR_MESSAGE);
         }
 
     }
@@ -119,7 +146,7 @@ public class MainPane extends JPanel {
     	
 		@Override
 		public void backHasBeenClicked() {
-			cardLayout.show(MainPane.this, CONFIGURATION_VIEW);
+			cardLayout.show(MainCardLayout.this, CONFIGURATION_VIEW);
 		}
 
 		@Override
@@ -158,12 +185,12 @@ public class MainPane extends JPanel {
 			SubtitleDataholder sdh = SubtitleDataholder.getSubtitleDataholder();
 			table.setModel(sdh);
 			
-			cardLayout.show(MainPane.this, SUBTITLE_REVIEW_VIEW);
+			cardLayout.show(MainCardLayout.this, SUBTITLE_REVIEW_VIEW);
 		}
 
 		@Override
 		public void cancelHasBeenClicked() {
-			JOptionPane.showMessageDialog(MainPane.this, "Do you want to cancel?", "Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(MainCardLayout.this, "Do you want to cancel?", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 
 		@Override
@@ -223,13 +250,12 @@ public class MainPane extends JPanel {
 
 		@Override
 		public void backHasBeenClicked() {
-			cardLayout.show(MainPane.this, FILE_CHOOSER_VIEW);
+			cardLayout.show(MainCardLayout.this, FILE_CHOOSER_VIEW);
 		}
 		
 		@Override
 		public void cancelHasBeenClicked() {
 			// TODO Auto-generated method stub
-			System.out.println("Repainterino!");
 			subtitleReviewView.getView().repaint();
 		}
     	
