@@ -80,6 +80,8 @@ public class MainCardLayout extends JPanel {
         fileChooserView = new FileChooserView(new FileChooserViewController());
         subtitleReviewView = new SubtitleReviewView(new SubtitleReviewViewController());
 
+        //Adds the Views as 'Cards' to the Layout
+        //The Literal will be used to open the corresponding view
         add(configurationView.getView(), CONFIGURATION_VIEW);
         add(fileChooserView.getView(), FILE_CHOOSER_VIEW);
         add(subtitleReviewView.getView(), SUBTITLE_REVIEW_VIEW);

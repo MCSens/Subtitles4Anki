@@ -118,6 +118,7 @@ public class SubtitleDataholder extends AbstractTableModel{
     @Override
     public void setValueAt(Object value, int row, int col) {
     	SubtitleContainer sc = subtitles.get(row);
+    	log.info("Changed Value at "+row+","+col+" from "+getValueAt(row, col)+" to "+value.toString());
     	sc.setLiteralOnColumn((String) value, (col));
     	subtitles.set(row, sc);
     }
